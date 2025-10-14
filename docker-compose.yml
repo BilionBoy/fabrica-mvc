@@ -3,16 +3,15 @@ version: "3.8"
 services:
   app:
     build: .
-    container_name: nextfrotas360_app
+    container_name: lafabrica_app
     restart: always
     depends_on:
       - db
     environment:
       RAILS_ENV: development
-      DATABASE_URL: postgres://nextfrotas1123581321345589:DhioRails11235813213455899@db:5432/nextfrotas360_development
-      DB_NAME: nextfrotas360_development
-      DB_USERNAME: nextfrotas1123581321345589
-      DB_PASSWORD: DhioRails11235813213455899
+      DB_NAME: lafabrica_development
+      DB_USERNAME: lafabrica
+      DB_PASSWORD: fabrica
       DB_HOST: db
     volumes:
       - .:/app
@@ -20,17 +19,17 @@ services:
       - ./log:/app/log
       - ./tmp:/app/tmp
     ports:
-      - "3000:3000"
+      - "3001:3000"
     command: sh -c "rm -f tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0 -p 3000"
 
   db:
     image: postgres:latest
-    container_name: nextfrotas360_db
+    container_name: lafabrica_db
     restart: always
     environment:
-      POSTGRES_USER: nextfrotas1123581321345589
-      POSTGRES_PASSWORD: DhioRails11235813213455899
-      POSTGRES_DB: nextfrotas360_development
+      POSTGRES_USER: lafabrica
+      POSTGRES_PASSWORD: fabrica
+      POSTGRES_DB: lafabrica_development
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -41,4 +40,4 @@ volumes:
 
 networks:
   default:
-    name: nextfrotas360_default
+    name: lafabrica_default
