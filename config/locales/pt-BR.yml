@@ -14,18 +14,15 @@ pt-BR:
       funcao:
         one: "Função"
         other: "Funções"
-      estabelecimento:
-        one: "Estabelecimento"
-        other: "Estabelecimentos"
-      user_estabelecimento:
-        one: "Usuário Estabelecimento"
-        other: "Usuários Estabelecimentos"
       categoria:
         one: "Categoria"
         other: "Categorias"
       produto:
         one: "Produto"
         other: "Produtos"
+      unidade_medida:
+        one: "Unidade de Medida"
+        other: "Unidades de Medida"
     attributes:
       funcao:
         nome: "Nome"
