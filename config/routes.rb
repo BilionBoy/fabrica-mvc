@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categorias
   root 'home#index'
   get 'home/index'
 

@@ -41,14 +41,14 @@
                       <i class="ph-trash-simple me-2"></i>Excluir
                     </a>
                     <%% end %>
-                    <%- attributes.each do |attribute| -%>
-                      <% unless attributes_to_ignore.include?(attribute.name) %>
-                        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
-                      <% end %>
-                    <%- end -%>
                   </div>
                 </div>
               </td>
+              <%- attributes.each do |attribute| -%>
+                <% unless attributes_to_ignore.include?(attribute.name) %>
+                  <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+                <% end %>
+              <%- end -%>
             </tr>
             <%% end %>
           </tbody>

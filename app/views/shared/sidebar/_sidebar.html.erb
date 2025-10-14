@@ -1,5 +1,6 @@
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-xl" style="background: #005171;">
   <div class="sidebar-content">
+    <!-- Cabeçalho -->
     <div class="sidebar-section">
       <div class="sidebar-section-body d-flex justify-content-center">
         <h5 class="sidebar-resize-hide flex-grow-1 my-auto"><b>Menu</b></h5>
@@ -13,6 +14,7 @@
         </div>
       </div>
     </div>
+
     <!-- Barra de pesquisa -->
     <div class="sidebar-section-body">
       <div class="form-control-feedback form-control-feedback-end">
@@ -28,38 +30,50 @@
         </div>
       </div>
     </div>
+
     <!-- Itens da sidebar -->
     <div class="sidebar-section">
       <ul class="nav nav-sidebar" data-nav-type="accordion" id="sidebar-items">
-        <li class="nav-item"></li>
-          <a href="<%= root_path %>" class="nav-link" id="config-link" data-no-close>
+
+        <!-- Home -->
+        <li class="nav-item">
+          <a href="<%= root_path %>" class="nav-link" id="home-link" data-no-close>
             <i class="ph-house"></i>
             <span>Home</span>
           </a>
         </li>
+
+      
+
+        <!-- Categorias -->
+        <li class="nav-item">
+          <a href="<%= categorias_path %>" class="nav-link" id="categorias-link" data-no-close>
+            <i class="ph-tag"></i>
+            <span>Categorias</span>
+          </a>
+        </li>
+
       </ul>
     </div>
   </div>
 </div>
 
-  <script>
-    function filterSidebar() {
-      const input = document.getElementById('sidebar-search-input');
-      const filter = input.value.toLowerCase();
-      const navItems = document.querySelectorAll('#sidebar-items .nav-item, #sidebar-items .nav-item-header');
+<script>
+  function filterSidebar() {
+    const input = document.getElementById('sidebar-search-input');
+    const filter = input.value.toLowerCase();
+    const navItems = document.querySelectorAll('#sidebar-items .nav-item, #sidebar-items .nav-item-header');
 
-      navItems.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        const isCollapsible = item.querySelector('.nav-group-sub');
+    navItems.forEach(item => {
+      const text = item.textContent.toLowerCase();
+      const isCollapsible = item.querySelector('.nav-group-sub');
 
-        if (text.includes(filter)) {
-          item.style.display = ''; // Mostra o item
-          if (isCollapsible) {
-            isCollapsible.classList.add('show'); // Abre a seção colapsável
-          }
-        } else {
-          item.style.display = 'none'; // Oculta o item
-        }
-      });
-    }
-  </script>
+      if (text.includes(filter)) {
+        item.style.display = '';
+        if (isCollapsible) isCollapsible.classList.add('show');
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+</script>
