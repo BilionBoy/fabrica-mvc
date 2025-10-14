@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: localhost
+
+development:
+  <<: *default
+  database: lafabrica_development
+  username: lafabrica
+  password: fabrica
+
+test:
+  <<: *default
+  database: lafabrica_test
+  username: lafabrica
+  password: fabrica
+
+production:
+  <<: *default
+  database: lafabrica_production
+  username: lafabrica
+  password: <%= ENV["LAFABRICA_DATABASE_PASSWORD"] %>
