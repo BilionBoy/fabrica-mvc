@@ -1,553 +1,666 @@
+/* Criando CSS completamente novo com design system moderno */
+
 /* ========================================
-   IDENTIDADE VISUAL CLIMASTOCK
-   Sistema de Gestão de Estoque e CRM
+   CLIMASTOCK DESIGN SYSTEM
+   Sistema Moderno de Gestão de Estoque
    ======================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
 :root {
-  /* Cores Corporativas ClimaStock */
-  --cs-blue-primary: #1e3a8a;
-  --cs-blue-secondary: #2563eb;
-  --cs-blue-light: #3b82f6;
-  --cs-blue-dark: #1e40af;
-  --cs-orange-primary: #f97316;
-  --cs-orange-secondary: #ea580c;
-  --cs-white: #ffffff;
-  --cs-gray-light: #f8f9fa;
-  --cs-gray-medium: #6c757d;
-  --cs-gray-dark: #495057;
+  /* Paleta de Cores Moderna - Tema Frio (Ar-Condicionado) */
+  --clima-primary: #0ea5e9;
+  --clima-primary-dark: #0284c7;
+  --clima-primary-light: #38bdf8;
+  --clima-secondary: #06b6d4;
+  --clima-accent: #f59e0b;
+  --clima-success: #10b981;
+  --clima-danger: #ef4444;
+  --clima-warning: #f59e0b;
+  --clima-info: #3b82f6;
 
-  /* Tipografia padronizada */
-  --cs-font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
-  --cs-font-title: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  /* Tons de Cinza */
+  --clima-gray-50: #f8fafc;
+  --clima-gray-100: #f1f5f9;
+  --clima-gray-200: #e2e8f0;
+  --clima-gray-300: #cbd5e1;
+  --clima-gray-400: #94a3b8;
+  --clima-gray-500: #64748b;
+  --clima-gray-600: #475569;
+  --clima-gray-700: #334155;
+  --clima-gray-800: #1e293b;
+  --clima-gray-900: #0f172a;
 
-  /* Escalas tipográficas */
-  --cs-text-xs: 0.75rem; /* 12px */
-  --cs-text-sm: 0.875rem; /* 14px */
-  --cs-text-base: 1rem; /* 16px */
-  --cs-text-lg: 1.125rem; /* 18px */
-  --cs-text-xl: 1.25rem; /* 20px */
-  --cs-text-2xl: 1.5rem; /* 24px */
+  /* Tipografia */
+  --clima-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --clima-font-size-xs: 0.75rem;
+  --clima-font-size-sm: 0.875rem;
+  --clima-font-size-base: 1rem;
+  --clima-font-size-lg: 1.125rem;
+  --clima-font-size-xl: 1.25rem;
+  --clima-font-size-2xl: 1.5rem;
+  --clima-font-size-3xl: 1.875rem;
 
-  /* Sombras simplificadas */
-  --cs-shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --cs-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Espaçamento */
+  --clima-spacing-xs: 0.5rem;
+  --clima-spacing-sm: 0.75rem;
+  --clima-spacing-md: 1rem;
+  --clima-spacing-lg: 1.5rem;
+  --clima-spacing-xl: 2rem;
+  --clima-spacing-2xl: 3rem;
+
+  /* Bordas */
+  --clima-radius-sm: 0.375rem;
+  --clima-radius-md: 0.5rem;
+  --clima-radius-lg: 0.75rem;
+  --clima-radius-xl: 1rem;
+  --clima-radius-full: 9999px;
+
+  /* Sombras */
+  --clima-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --clima-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --clima-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --clima-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Transições */
+  --clima-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-item-submenu > .nav-group-sub {
-  display: none;
-}
-.nav-item-submenu.open > .nav-group-sub {
-  display: block;
+/* ========================================
+   RESET E BASE
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Estilos base de tipografia */
 body {
-  font-family: var(--cs-font-primary);
-  font-size: var(--cs-text-base);
-  line-height: 1.5;
-  font-weight: 400;
+  font-family: var(--clima-font-family);
+  font-size: var(--clima-font-size-base);
+  line-height: 1.6;
+  color: var(--clima-gray-800);
+  background: var(--clima-gray-50);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Botões */
-.btn-primary {
-  --btn-color: #fff;
-  --btn-bg: #1e3a8a;
-  --btn-border-color: #1e3a8a;
-  --btn-hover-color: #fff;
-  --btn-hover-bg: #2563eb;
-  --btn-hover-border-color: #2563eb;
-  --btn-focus-shadow-rgb: 37, 99, 235;
-  --btn-active-color: #fff;
-  --btn-active-bg: #1e40af;
-  --btn-active-border-color: #1e40af;
-  --btn-active-shadow: inset 0 0 0 0 transparent;
-  --btn-disabled-color: #fff;
-  --btn-disabled-bg: #1e3a8a;
-  --btn-disabled-border-color: #1e3a8a;
+/* ========================================
+   LAYOUT DA PÁGINA
+   ======================================== */
+
+.climastock-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--clima-spacing-xl);
 }
 
-a.nav-link {
+/* ========================================
+   HEADER DA PÁGINA
+   ======================================== */
+
+.climastock-page-header {
+  margin-bottom: var(--clima-spacing-xl);
+}
+
+.climastock-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--clima-spacing-lg);
+  flex-wrap: wrap;
+}
+
+.climastock-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--clima-spacing-lg);
+}
+
+.climastock-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--clima-primary),
+    var(--clima-secondary)
+  );
+  border-radius: var(--clima-radius-xl);
+  box-shadow: var(--clima-shadow-lg);
+}
+
+.climastock-icon-wrapper i {
+  font-size: 2rem;
   color: white;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--cs-font-title);
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
-}
-
-h1 {
-  font-size: var(--cs-text-2xl);
-}
-h2 {
-  font-size: var(--cs-text-xl);
-}
-h3 {
-  font-size: var(--cs-text-lg);
-}
-h4 {
-  font-size: var(--cs-text-base);
-}
-h5 {
-  font-size: var(--cs-text-sm);
-}
-h6 {
-  font-size: var(--cs-text-xs);
-}
-
-/* ========================================
-   NAVBAR CLIMASTOCK
-   ======================================== */
-
-.cs-navbar {
-  background: var(--cs-blue-primary) !important;
-  border-bottom: 2px solid var(--cs-orange-primary);
-  box-shadow: var(--cs-shadow-light);
-  font-family: var(--cs-font-primary);
-  min-height: 70px;
-}
-
-.cs-logo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.cs-logo,
-.cs-sistema {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-.cs-title-section {
+.climastock-header-text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: var(--clima-spacing-xs);
 }
 
-.cs-main-title {
-  font-family: var(--cs-font-title);
-  font-size: var(--cs-text-lg);
-  font-weight: 600;
-  color: var(--cs-white);
-  margin: 0;
-  letter-spacing: 0.3px;
+.climastock-page-title {
+  font-size: var(--clima-font-size-3xl);
+  font-weight: 800;
+  color: var(--clima-gray-900);
   line-height: 1.2;
 }
 
-.cs-subtitle {
-  font-family: var(--cs-font-primary);
-  font-size: var(--cs-text-sm);
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0;
+.climastock-page-subtitle {
+  font-size: var(--clima-font-size-base);
+  color: var(--clima-gray-500);
   font-weight: 400;
 }
 
-.cs-user-toggle {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: background-color 0.2s ease;
-  padding: 8px 16px !important;
-  backdrop-filter: blur(10px);
-}
+/* ========================================
+   BOTÕES
+   ======================================== */
 
-.cs-user-toggle:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: var(--cs-orange-primary);
-}
-
-.cs-user-icon {
-  font-size: 1.5rem;
-  color: var(--cs-white);
-  margin-right: 8px;
-}
-
-.cs-user-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  line-height: 1.2;
-}
-
-.cs-greeting {
-  font-size: var(--cs-text-xs);
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.cs-username {
-  font-size: var(--cs-text-sm);
-  color: var(--cs-white);
-  font-weight: 600;
-}
-
-.cs-dropdown-arrow {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
-  transition: transform 0.3s ease;
-}
-
-.cs-user-toggle[aria-expanded="true"] .cs-dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-.cs-dropdown-menu {
-  display: none;
-  position: absolute;
-  background: var(--cs-white);
-  box-shadow: var(--cs-shadow-light);
-  border: 1px solid var(--cs-gray-light);
-  border-radius: 6px;
-  right: 0;
-  margin-top: 8px;
-  z-index: 1000;
-  padding: 12px;
-  width: 240px;
-  font-family: var(--cs-font-primary);
-}
-
-.cs-user-profile {
-  display: flex;
+.climastock-btn {
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px;
-  background: var(--cs-gray-light);
-  border-radius: 8px;
-  margin-bottom: 8px;
-}
-
-.cs-user-profile i {
-  font-size: 1.8rem;
-  color: var(--cs-blue-primary);
-}
-
-.cs-user-profile strong {
-  display: block;
-  color: var(--cs-blue-primary);
+  gap: var(--clima-spacing-sm);
+  padding: var(--clima-spacing-sm) var(--clima-spacing-lg);
+  font-size: var(--clima-font-size-sm);
   font-weight: 600;
-}
-
-.cs-user-profile small {
-  color: var(--cs-gray-medium);
-  font-size: var(--cs-text-xs);
-}
-
-.cs-divider {
-  border: none;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--cs-orange-primary),
-    transparent
-  );
-  margin: 12px 0;
-}
-
-.cs-dropdown-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 10px 16px;
-  color: var(--cs-blue-primary);
+  border-radius: var(--clima-radius-lg);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--clima-transition);
   text-decoration: none;
-  font-size: var(--cs-text-sm);
-  font-weight: 500;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.cs-dropdown-item:hover {
-  color: var(--cs-white);
-  background: var(--cs-orange-primary);
+.climastock-btn i {
+  font-size: 1.25rem;
 }
 
-.cs-btn-logout {
+.climastock-btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--clima-primary),
+    var(--clima-secondary)
+  );
+  color: white;
+  box-shadow: var(--clima-shadow-md);
+}
+
+.climastock-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--clima-shadow-lg);
+  color: white;
+}
+
+.climastock-btn-secondary {
+  background: white;
+  color: var(--clima-gray-700);
+  border-color: var(--clima-gray-300);
+  box-shadow: var(--clima-shadow-sm);
+}
+
+.climastock-btn-secondary:hover {
+  background: var(--clima-gray-50);
+  border-color: var(--clima-gray-400);
+  color: var(--clima-gray-900);
+}
+
+.climastock-btn-outline {
+  background: transparent;
+  color: var(--clima-gray-600);
+  border-color: var(--clima-gray-300);
+}
+
+.climastock-btn-outline:hover {
+  background: var(--clima-gray-100);
+  border-color: var(--clima-gray-400);
+  color: var(--clima-gray-800);
+}
+
+/* ========================================
+   BUSCA
+   ======================================== */
+
+.climastock-search-section {
+  margin-bottom: var(--clima-spacing-xl);
+}
+
+.climastock-search-form {
+  width: 100%;
+}
+
+.climastock-search-wrapper {
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 10px 16px;
-  color: #dc3545;
-  font-size: var(--cs-text-sm);
+  gap: var(--clima-spacing-md);
+  background: white;
+  padding: var(--clima-spacing-sm);
+  border-radius: var(--clima-radius-xl);
+  box-shadow: var(--clima-shadow-lg);
+  border: 2px solid var(--clima-gray-200);
+  transition: var(--clima-transition);
+}
+
+.climastock-search-wrapper:focus-within {
+  border-color: var(--clima-primary);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1), var(--clima-shadow-lg);
+}
+
+.climastock-search-icon {
+  font-size: 1.5rem;
+  color: var(--clima-gray-400);
+  margin-left: var(--clima-spacing-sm);
+}
+
+.climastock-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: var(--clima-font-size-base);
+  color: var(--clima-gray-800);
+  background: transparent;
+  padding: var(--clima-spacing-sm);
+}
+
+.climastock-search-input::placeholder {
+  color: var(--clima-gray-400);
+}
+
+.climastock-search-btn {
+  padding: var(--clima-spacing-sm) var(--clima-spacing-lg);
+  background: linear-gradient(
+    135deg,
+    var(--clima-primary),
+    var(--clima-secondary)
+  );
+  color: white;
+  border: none;
+  border-radius: var(--clima-radius-lg);
   font-weight: 600;
-  background: rgba(220, 53, 69, 0.1);
-  border: 1px solid rgba(220, 53, 69, 0.2);
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: var(--clima-transition);
+}
+
+.climastock-search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--clima-shadow-md);
+}
+
+.climastock-clear-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--clima-spacing-xs);
+  padding: var(--clima-spacing-sm) var(--clima-spacing-md);
+  background: var(--clima-gray-100);
+  color: var(--clima-gray-600);
+  border-radius: var(--clima-radius-lg);
+  text-decoration: none;
+  font-size: var(--clima-font-size-sm);
+  font-weight: 500;
+  transition: var(--clima-transition);
+}
+
+.climastock-clear-btn:hover {
+  background: var(--clima-gray-200);
+  color: var(--clima-gray-800);
+}
+
+/* ========================================
+   GRID DE CARDS
+   ======================================== */
+
+.climastock-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--clima-spacing-lg);
+  margin-bottom: var(--clima-spacing-xl);
+}
+
+.climastock-card {
+  background: white;
+  border-radius: var(--clima-radius-xl);
+  box-shadow: var(--clima-shadow-md);
+  border: 1px solid var(--clima-gray-200);
+  overflow: hidden;
+  transition: var(--clima-transition);
+}
+
+.climastock-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--clima-shadow-xl);
+  border-color: var(--clima-primary);
+}
+
+.climastock-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--clima-spacing-lg);
+  background: linear-gradient(
+    135deg,
+    var(--clima-gray-50),
+    var(--clima-gray-100)
+  );
+  border-bottom: 1px solid var(--clima-gray-200);
+}
+
+.climastock-card-badge {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--clima-primary),
+    var(--clima-secondary)
+  );
+  border-radius: var(--clima-radius-lg);
+}
+
+.climastock-card-badge i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.climastock-card-actions {
+  position: relative;
+}
+
+.climastock-dropdown-toggle {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid var(--clima-gray-300);
+  border-radius: var(--clima-radius-md);
+  cursor: pointer;
+  transition: var(--clima-transition);
+}
+
+.climastock-dropdown-toggle:hover {
+  background: var(--clima-gray-100);
+  border-color: var(--clima-gray-400);
+}
+
+.climastock-dropdown-toggle i {
+  font-size: 1.25rem;
+  color: var(--clima-gray-600);
+}
+
+.climastock-dropdown-menu {
+  min-width: 180px;
+  padding: var(--clima-spacing-sm);
+  border-radius: var(--clima-radius-lg);
+  border: 1px solid var(--clima-gray-200);
+  box-shadow: var(--clima-shadow-xl);
+}
+
+.climastock-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--clima-spacing-sm);
+  padding: var(--clima-spacing-sm) var(--clima-spacing-md);
+  border-radius: var(--clima-radius-md);
+  color: var(--clima-gray-700);
+  text-decoration: none;
+  font-size: var(--clima-font-size-sm);
+  font-weight: 500;
+  transition: var(--clima-transition);
   cursor: pointer;
 }
 
-.cs-btn-logout:hover {
-  color: var(--cs-white);
-  background: #dc3545;
-  border-color: #dc3545;
+.climastock-dropdown-item:hover {
+  background: var(--clima-gray-100);
+  color: var(--clima-gray-900);
 }
 
-/* Itens principais do menu */
-.nav-sidebar .nav-link.cs-nav-link:hover {
-  color: #fff !important;
+.climastock-dropdown-item i {
+  font-size: 1.125rem;
 }
 
-/* Itens do submenu */
-.nav-sidebar .nav-group-sub .nav-link:hover {
-  color: #fff !important;
+.climastock-dropdown-item-danger {
+  color: var(--clima-danger);
 }
 
-/* Mantém ativo o submenu aberto */
-.nav-sidebar .nav-group-sub .nav-link.active {
-  color: #fff !important;
+.climastock-dropdown-item-danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--clima-danger);
 }
 
-/* Suaviza a transição de cor */
-.nav-sidebar .nav-link {
-  transition: background-color 0.2s, color 0.2s;
+.climastock-card-body {
+  padding: var(--clima-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--clima-spacing-md);
 }
 
-/* Links de submenu "pai" */
-.nav-item-submenu > a.nav-link:hover {
-  color: #fff !important;
+.climastock-card-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--clima-spacing-xs);
 }
 
-.nav-item-submenu.open > a.nav-link {
-  color: #fff !important;
+.climastock-field-label {
+  font-size: var(--clima-font-size-xs);
+  font-weight: 600;
+  color: var(--clima-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.climastock-field-value {
+  font-size: var(--clima-font-size-base);
+  font-weight: 500;
+  color: var(--clima-gray-800);
+}
+
+.climastock-card-footer {
+  padding: var(--clima-spacing-lg);
+  background: var(--clima-gray-50);
+  border-top: 1px solid var(--clima-gray-200);
+}
+
+.climastock-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--clima-primary);
+  text-decoration: none;
+  font-size: var(--clima-font-size-sm);
+  font-weight: 600;
+  transition: var(--clima-transition);
+}
+
+.climastock-card-link:hover {
+  color: var(--clima-primary-dark);
+  gap: var(--clima-spacing-md);
+}
+
+.climastock-card-link i {
+  font-size: 1.125rem;
+  transition: var(--clima-transition);
 }
 
 /* ========================================
-   SIDEBAR CLIMASTOCK
+   FORMULÁRIO
    ======================================== */
 
-.cs-sidebar {
-  background: var(--cs-blue-primary) !important;
-  border-right: 2px solid var(--cs-orange-primary);
-  box-shadow: var(--cs-shadow-light);
-  font-family: var(--cs-font-primary);
+.climastock-form {
+  width: 100%;
 }
 
-.cs-menu-header {
+.climastock-form-card {
+  background: white;
+  border-radius: var(--clima-radius-xl);
+  box-shadow: var(--clima-shadow-lg);
+  border: 1px solid var(--clima-gray-200);
+  overflow: hidden;
+}
+
+.climastock-alert {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-grow: 1;
+  gap: var(--clima-spacing-md);
+  padding: var(--clima-spacing-lg);
+  border-radius: var(--clima-radius-lg);
+  margin: var(--clima-spacing-lg);
 }
 
-.cs-menu-icon {
-  font-size: 1.2rem;
-  color: var(--cs-white);
+.climastock-alert-danger {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--clima-danger);
 }
 
-.cs-menu-title {
-  color: var(--cs-white) !important;
-  font-family: var(--cs-font-title) !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.5px;
-  font-size: var(--cs-text-sm) !important;
-  margin: 0 !important;
+.climastock-alert-icon {
+  flex-shrink: 0;
 }
 
-.cs-search-container {
-  margin: 0 15px 20px 15px;
+.climastock-alert-icon i {
+  font-size: 1.5rem;
+  color: var(--clima-danger);
 }
 
-.cs-search-input {
-  background: var(--cs-white) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
-  border-radius: 6px !important;
-  padding: 10px 40px 10px 16px !important;
-  color: var(--cs-blue-primary) !important;
-  font-weight: 400;
-  transition: border-color 0.2s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+.climastock-alert-content {
+  flex: 1;
 }
 
-.cs-search-input:focus {
-  border-color: var(--cs-orange-primary) !important;
-  box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15) !important;
-  outline: none !important;
+.climastock-alert-title {
+  font-size: var(--clima-font-size-base);
+  font-weight: 700;
+  color: var(--clima-danger);
+  margin-bottom: var(--clima-spacing-xs);
 }
 
-.cs-search-input::placeholder {
-  color: var(--cs-blue-primary) !important;
-  opacity: 0.7;
-}
-
-.cs-search-icon {
-  color: var(--cs-blue-primary) !important;
-  right: 18px !important;
-  top: 50% !important;
-  transform: translateY(-50%);
-}
-
-.cs-search-hint {
+.climastock-alert-list {
+  list-style: none;
   display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 6px;
-  padding: 0 16px;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: var(--cs-text-xs);
-  font-weight: 400;
+  flex-direction: column;
+  gap: var(--clima-spacing-xs);
 }
 
-.cs-search-hint i {
-  color: rgba(255, 255, 255, 0.6);
+.climastock-alert-list li {
+  font-size: var(--clima-font-size-sm);
+  color: var(--clima-danger);
 }
 
-.cs-nav {
-  padding: 0 10px;
+.climastock-form-body {
+  padding: var(--clima-spacing-xl);
 }
 
-.cs-nav-header {
-  color: rgba(255, 255, 255, 0.8) !important;
-  font-family: var(--cs-font-primary);
-  font-weight: 500 !important;
-  font-size: var(--cs-text-xs) !important;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  padding: 16px 16px 6px 16px !important;
-  margin-top: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+.climastock-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--clima-spacing-lg);
 }
 
-.cs-nav-link {
-  color: rgba(255, 255, 255, 0.9) !important;
-  border-radius: 4px !important;
-  margin: 1px 0 !important;
-  padding: 10px 16px !important;
-  transition: background-color 0.2s ease;
-  font-weight: 400;
-  position: relative;
-  border-left: 3px solid transparent;
+.climastock-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--clima-spacing-sm);
 }
 
-.cs-nav-link:hover {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: var(--cs-white) !important;
-  border-left-color: var(--cs-orange-primary);
+.climastock-label {
+  font-size: var(--clima-font-size-sm);
+  font-weight: 600;
+  color: var(--clima-gray-700);
+  margin-bottom: var(--clima-spacing-xs);
 }
 
-.cs-nav-link.active {
-  background: linear-gradient(
-    135deg,
-    var(--cs-orange-primary),
-    var(--cs-orange-secondary)
-  ) !important;
-  color: var(--cs-white) !important;
+.climastock-input {
+  width: 100%;
+  padding: var(--clima-spacing-md);
+  font-size: var(--clima-font-size-base);
+  color: var(--clima-gray-800);
+  background: white;
+  border: 2px solid var(--clima-gray-300);
+  border-radius: var(--clima-radius-lg);
+  transition: var(--clima-transition);
+}
+
+.climastock-input:focus {
+  outline: none;
+  border-color: var(--clima-primary);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+.climastock-form-footer {
+  padding: var(--clima-spacing-lg) var(--clima-spacing-xl);
+  background: var(--clima-gray-50);
+  border-top: 1px solid var(--clima-gray-200);
+}
+
+.climastock-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--clima-spacing-md);
+}
+
+/* ========================================
+   PAGINAÇÃO
+   ======================================== */
+
+.climastock-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--clima-spacing-xl);
+}
+
+.climastock-page-link {
+  padding: var(--clima-spacing-sm) var(--clima-spacing-md);
+  margin: 0 var(--clima-spacing-xs);
+  background: white;
+  color: var(--clima-gray-700);
+  border: 1px solid var(--clima-gray-300);
+  border-radius: var(--clima-radius-md);
+  text-decoration: none;
   font-weight: 500;
-  border-left-color: var(--cs-blue-light);
+  transition: var(--clima-transition);
 }
 
-.cs-no-results {
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  cursor: default;
-  text-align: center;
-  padding: 16px !important;
-  border-radius: 4px;
-  margin: 8px 0;
-}
-
-.cs-no-results strong {
-  display: block;
-  margin-bottom: 4px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.cs-no-results small {
-  font-size: var(--cs-text-xs);
-  opacity: 0.7;
-}
-
-/* Permite que o dropdown saia dos limites da tabela */
-.table-responsive {
-  overflow: visible !important;
-}
-
-/* Alternativa: mantém scroll horizontal mas permite overflow vertical */
-.table-responsive {
-  overflow-x: auto;
-  overflow-y: visible;
-}
-
-/* Garante que o dropdown tenha z-index adequado */
-.dropdown-menu {
-  z-index: 1050;
-}
-
-/* Position static na célula para evitar conflitos */
-.table td.text-center {
-  position: static;
+.climastock-page-link:hover {
+  background: var(--clima-primary);
+  color: white;
+  border-color: var(--clima-primary);
 }
 
 /* ========================================
    RESPONSIVIDADE
    ======================================== */
 
-@media (max-width: 1199.98px) {
-  .cs-main-title {
-    font-size: var(--cs-text-base);
-  }
-
-  .cs-subtitle {
-    font-size: var(--cs-text-xs);
-  }
-
-  .cs-dropdown-menu {
-    width: 240px;
-    right: -10px;
-  }
-}
-
 @media (max-width: 768px) {
-  .cs-navbar {
-    padding: 0.5rem 1rem;
-    min-height: 65px;
+  .climastock-page {
+    padding: var(--clima-spacing-md);
   }
 
-  .cs-title-section {
-    display: none;
+  .climastock-header-content {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
-  .cs-dropdown-menu {
-    width: 220px;
-    right: -15px;
+  .climastock-cards-grid {
+    grid-template-columns: 1fr;
   }
 
-  .cs-search-container {
-    margin: 0 10px 15px 10px;
+  .climastock-form-grid {
+    grid-template-columns: 1fr;
   }
 
-  .cs-nav {
-    padding: 0 5px;
+  .climastock-form-actions {
+    flex-direction: column;
   }
-}
 
-/* ========================================
-   SCROLLBAR CUSTOMIZADA
-   ======================================== */
-
-.cs-sidebar .sidebar-content::-webkit-scrollbar {
-  width: 4px;
-}
-
-.cs-sidebar .sidebar-content::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.cs-sidebar .sidebar-content::-webkit-scrollbar-thumb {
-  background: var(--cs-orange-primary);
-  border-radius: 2px;
-}
-
-.cs-sidebar .sidebar-content::-webkit-scrollbar-thumb:hover {
-  background: var(--cs-orange-secondary);
+  .climastock-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

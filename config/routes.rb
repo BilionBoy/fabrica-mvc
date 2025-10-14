@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :categorias
+  resources :unidades_medida
   root 'home#index'
   get 'home/index'
 

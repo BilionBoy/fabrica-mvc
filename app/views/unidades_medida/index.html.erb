@@ -1,4 +1,4 @@
-<%# Criando template de index completamente novo com design moderno %>
+
 <div class="climastock-page">
   <!-- Header da Página -->
   <div class="climastock-page-header">
@@ -9,42 +9,42 @@
         </div>
         <div class="climastock-header-text">
           <h1 class="climastock-page-title">
-            <%%= t("activerecord.models.#{<%= class_name %>.model_name.i18n_key}.other") %>
+            <%= t("activerecord.models.#{UnidadeMedida.model_name.i18n_key}.other") %>
           </h1>
           <p class="climastock-page-subtitle">Gerencie seus registros de forma eficiente</p>
         </div>
       </div>
       <div class="climastock-header-right">
-        <%%= link_to new_<%= singular_table_name %>_path, class: "climastock-btn climastock-btn-primary" do %>
+        <%= link_to new_unidade_medida_path, class: "climastock-btn climastock-btn-primary" do %>
         <i class="ph-plus-circle"></i>
         <span>Novo Registro</span>
-        <%% end %>
+        <% end %>
       </div>
     </div>
   </div>
   <!-- Barra de Busca -->
   <div class="climastock-search-section">
-    <%%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
+    <%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
       <div class="climastock-search-wrapper">
         <i class="ph-magnifying-glass climastock-search-icon"></i>
-        <%%= f.search_field :<%= attributes[0].name %>_cont, 
+        <%= f.search_field :nome_cont, 
         class: "climastock-search-input", 
         placeholder: "Buscar registros..." %>
-        <%%= f.button type: 'submit', class: 'climastock-search-btn' do %>
+        <%= f.button type: 'submit', class: 'climastock-search-btn' do %>
           <span>Buscar</span>
-          <%% end %>
-          <%% if params[:q] %>
-          <%%= link_to <%= plural_table_name %>_path, class: "climastock-clear-btn" do %>
+          <% end %>
+          <% if params[:q] %>
+          <%= link_to unidades_medida_path, class: "climastock-clear-btn" do %>
           <i class="ph-x-circle"></i>
           <span>Limpar</span>
-          <%% end %>
-          <%% end %>
+          <% end %>
+          <% end %>
         </div>
-        <%% end %>
+        <% end %>
       </div>
       <!-- Grid de Cards -->
       <div class="climastock-cards-grid">
-        <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+        <% @unidades_medida.each do |unidade_medida| %>
         <div class="climastock-card">
           <div class="climastock-card-header">
             <div class="climastock-card-badge">
@@ -56,46 +56,44 @@
                   <i class="ph-dots-three-vertical"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end climastock-dropdown-menu">
-                  <%%= link_to edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "climastock-dropdown-item" do %>
+                  <%= link_to edit_unidade_medida_path(unidade_medida), class: "climastock-dropdown-item" do %>
                   <i class="ph-pen"></i>
                   <span>Editar</span>
-                  <%% end %>
-                  <%%= form_for <%= singular_table_name %>, method: :delete do |f| %>
+                  <% end %>
+                  <%= form_for unidade_medida, method: :delete do |f| %>
                   <a class="climastock-dropdown-item climastock-dropdown-item-danger" 
-                     data-confirm-delete="<%%= <%= singular_table_name %>_path(<%= singular_table_name %>) %>" 
-                    data-csrf-token="<%%= form_authenticity_token %>">
+                     data-confirm-delete="<%= unidade_medida_path(unidade_medida) %>" 
+                    data-csrf-token="<%= form_authenticity_token %>">
                     <i class="ph-trash"></i>
                     <span>Excluir</span>
                   </a>
-                  <%% end %>
+                  <% end %>
                 </div>
               </div>
             </div>
           </div>
           <div class="climastock-card-body">
-            <% attributes_to_ignore = ['deleted_at', 'original_user_create', 'last_user_update', 'created_by', 'updated_by'] %>
-            <%- attributes.reject { |attr| attributes_to_ignore.include?(attr.name) }.first(4).each do |attribute| -%>
+            
               <div class="climastock-card-field">
                 <span class="climastock-field-label">
-                  <%%= t("activerecord.attributes.<%= singular_table_name %>.<%= attribute.name %>") %>
+                  <%= t("activerecord.attributes.unidade_medida.nome") %>
                 </span>
                 <span class="climastock-field-value">
-                  <%%= <%= singular_table_name %>.<%= attribute.name %> %>
+                  <%= unidade_medida.nome %>
                 </span>
               </div>
-            <%- end -%>
           </div>
           <div class="climastock-card-footer">
-            <%%= link_to <%= singular_table_name %>_path(<%= singular_table_name %>), class: "climastock-card-link" do %>
+            <%= link_to unidade_medida_path(unidade_medida), class: "climastock-card-link" do %>
             <span>Ver detalhes</span>
             <i class="ph-arrow-right"></i>
-            <%% end %>
+            <% end %>
           </div>
         </div>
-        <%% end %>
+        <% end %>
       </div>
       <!-- Paginação -->
       <div class="climastock-pagination">
-        <%%= pagy_bootstrap_nav(@pagy, link_extra: 'class="climastock-page-link"').html_safe %>
+        <%= pagy_bootstrap_nav(@pagy, link_extra: 'class="climastock-page-link"').html_safe %>
       </div>
     </div>
