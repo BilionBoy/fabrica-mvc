@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Categoria < ApplicationRecord
+class Produto < ApplicationRecord
   # Adicione aqui quaisquer métodos ou validações padrão para seus modelos
-  has_many :produtos
+  belongs_to :categoria
 end

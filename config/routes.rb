@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :produtos
   resources :categorias
   resources :unidades_medida
   root 'home#index'

@@ -1,25 +1,41 @@
-/* Criando CSS completamente novo com design system moderno */
-
 /* ========================================
-   CLIMASTOCK DESIGN SYSTEM
-   Sistema Moderno de Gestão de Estoque
+   CLIMASTOCK DESIGN SYSTEM V2.0
+   Sistema Ultra Moderno de Gestão
    ======================================== */
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://unpkg.com/@phosphor-icons/web@2.0.3/src/regular/style.css");
 
 :root {
-  /* Paleta de Cores Moderna - Tema Frio (Ar-Condicionado) */
+  /* Paleta de cores completamente renovada com gradientes e tons mais sofisticados */
   --clima-primary: #0ea5e9;
   --clima-primary-dark: #0284c7;
   --clima-primary-light: #38bdf8;
+  --clima-primary-lighter: #7dd3fc;
   --clima-secondary: #06b6d4;
+  --clima-secondary-dark: #0891b2;
   --clima-accent: #f59e0b;
+  --clima-accent-light: #fbbf24;
   --clima-success: #10b981;
+  --clima-success-light: #34d399;
   --clima-danger: #ef4444;
+  --clima-danger-light: #f87171;
   --clima-warning: #f59e0b;
   --clima-info: #3b82f6;
 
-  /* Tons de Cinza */
+  /* Gradientes Modernos */
+  --clima-gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  --clima-gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  --clima-gradient-accent: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+  --clima-gradient-success: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  --clima-gradient-danger: linear-gradient(135deg, #ef4444 0%, #f87171 100%);
+  --clima-gradient-cool: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --clima-gradient-warm: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --clima-gradient-ocean: linear-gradient(135deg, #2e3192 0%, #1bffff 100%);
+  --clima-gradient-sunset: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --clima-gradient-frost: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+
+  /* Tons de Cinza Refinados */
   --clima-gray-50: #f8fafc;
   --clima-gray-100: #f1f5f9;
   --clima-gray-200: #e2e8f0;
@@ -31,9 +47,10 @@
   --clima-gray-800: #1e293b;
   --clima-gray-900: #0f172a;
 
-  /* Tipografia */
+  /* Tipografia Aprimorada */
   --clima-font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+    Roboto, sans-serif;
+  --clima-font-mono: "JetBrains Mono", "Fira Code", monospace;
   --clima-font-size-xs: 0.75rem;
   --clima-font-size-sm: 0.875rem;
   --clima-font-size-base: 1rem;
@@ -41,37 +58,46 @@
   --clima-font-size-xl: 1.25rem;
   --clima-font-size-2xl: 1.5rem;
   --clima-font-size-3xl: 1.875rem;
+  --clima-font-size-4xl: 2.25rem;
+  --clima-font-size-5xl: 3rem;
 
-  /* Espaçamento */
+  /* Espaçamento Refinado */
   --clima-spacing-xs: 0.5rem;
   --clima-spacing-sm: 0.75rem;
   --clima-spacing-md: 1rem;
   --clima-spacing-lg: 1.5rem;
   --clima-spacing-xl: 2rem;
   --clima-spacing-2xl: 3rem;
+  --clima-spacing-3xl: 4rem;
 
-  /* Bordas */
-  --clima-radius-sm: 0.375rem;
-  --clima-radius-md: 0.5rem;
-  --clima-radius-lg: 0.75rem;
-  --clima-radius-xl: 1rem;
+  /* Bordas Modernas */
+  --clima-radius-sm: 0.5rem;
+  --clima-radius-md: 0.75rem;
+  --clima-radius-lg: 1rem;
+  --clima-radius-xl: 1.25rem;
+  --clima-radius-2xl: 1.5rem;
   --clima-radius-full: 9999px;
 
-  /* Sombras */
-  --clima-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --clima-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --clima-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --clima-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* Sombras Sofisticadas */
+  --clima-shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --clima-shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  --clima-shadow-md: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  --clima-shadow-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.12);
+  --clima-shadow-xl: 0 16px 48px 0 rgba(0, 0, 0, 0.15);
+  --clima-shadow-2xl: 0 24px 64px 0 rgba(0, 0, 0, 0.2);
+  --clima-shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --clima-shadow-glow: 0 0 20px rgba(14, 165, 233, 0.4);
+  --clima-shadow-glow-lg: 0 0 40px rgba(14, 165, 233, 0.5);
 
-  /* Transições */
+  /* Transições Suaves */
+  --clima-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --clima-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --clima-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --clima-transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* ========================================
-   RESET E BASE
+   RESET E BASE APRIMORADO
    ======================================== */
 
 * {
@@ -85,61 +111,160 @@ body {
   font-size: var(--clima-font-size-base);
   line-height: 1.6;
   color: var(--clima-gray-800);
-  background: var(--clima-gray-50);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Adicionando animações globais */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
 }
 
 /* ========================================
-   LAYOUT DA PÁGINA
+   LAYOUT DA PÁGINA MELHORADO
    ======================================== */
 
 .climastock-page {
   max-width: 1400px;
   margin: 0 auto;
-  padding: var(--clima-spacing-xl);
+  padding: var(--clima-spacing-2xl);
+  animation: fadeIn 0.6s ease-out;
 }
 
 /* ========================================
-   HEADER DA PÁGINA
+   HEADER DA PÁGINA ULTRA MODERNO
    ======================================== */
 
 .climastock-page-header {
-  margin-bottom: var(--clima-spacing-xl);
+  margin-bottom: var(--clima-spacing-2xl);
+  animation: slideIn 0.5s ease-out;
 }
 
 .climastock-header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: var(--clima-spacing-lg);
+  gap: var(--clima-spacing-xl);
   flex-wrap: wrap;
+  padding: var(--clima-spacing-xl);
+  background: white;
+  border-radius: var(--clima-radius-2xl);
+  box-shadow: var(--clima-shadow-lg);
+  border: 1px solid var(--clima-gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Adicionando efeito de brilho no header */
+.climastock-header-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 3s infinite;
 }
 
 .climastock-header-left {
   display: flex;
   align-items: center;
   gap: var(--clima-spacing-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .climastock-icon-wrapper {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    var(--clima-primary),
-    var(--clima-secondary)
-  );
+  background: var(--clima-gradient-primary);
   border-radius: var(--clima-radius-xl);
-  box-shadow: var(--clima-shadow-lg);
+  box-shadow: var(--clima-shadow-xl), var(--clima-shadow-glow);
+  position: relative;
+  transition: var(--clima-transition);
+}
+
+/* Adicionando efeito de pulso no ícone */
+.climastock-icon-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: var(--clima-gradient-primary);
+  border-radius: var(--clima-radius-xl);
+  opacity: 0.3;
+  filter: blur(12px);
+  z-index: -1;
+  animation: pulse 2s infinite;
+}
+
+.climastock-icon-wrapper:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: var(--clima-shadow-2xl), var(--clima-shadow-glow-lg);
 }
 
 .climastock-icon-wrapper i {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .climastock-header-text {
@@ -149,68 +274,108 @@ body {
 }
 
 .climastock-page-title {
-  font-size: var(--clima-font-size-3xl);
-  font-weight: 800;
-  color: var(--clima-gray-900);
+  font-size: var(--clima-font-size-4xl);
+  font-weight: 900;
+  background: var(--clima-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 .climastock-page-subtitle {
-  font-size: var(--clima-font-size-base);
+  font-size: var(--clima-font-size-lg);
   color: var(--clima-gray-500);
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.climastock-header-right {
+  position: relative;
+  z-index: 1;
 }
 
 /* ========================================
-   BOTÕES
+   BOTÕES ULTRA MODERNOS
    ======================================== */
 
 .climastock-btn {
   display: inline-flex;
   align-items: center;
   gap: var(--clima-spacing-sm);
-  padding: var(--clima-spacing-sm) var(--clima-spacing-lg);
-  font-size: var(--clima-font-size-sm);
-  font-weight: 600;
-  border-radius: var(--clima-radius-lg);
+  padding: var(--clima-spacing-md) var(--clima-spacing-xl);
+  font-size: var(--clima-font-size-base);
+  font-weight: 700;
+  border-radius: var(--clima-radius-xl);
   border: 2px solid transparent;
   cursor: pointer;
   transition: var(--clima-transition);
   text-decoration: none;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .climastock-btn i {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  transition: var(--clima-transition);
 }
 
+/* Botão primário com gradiente e efeitos avançados */
 .climastock-btn-primary {
-  background: linear-gradient(
-    135deg,
-    var(--clima-primary),
-    var(--clima-secondary)
-  );
+  background: var(--clima-gradient-primary);
   color: white;
-  box-shadow: var(--clima-shadow-md);
+  box-shadow: var(--clima-shadow-lg), 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+.climastock-btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: var(--clima-transition);
 }
 
 .climastock-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--clima-shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: var(--clima-shadow-2xl), 0 0 40px rgba(14, 165, 233, 0.5);
   color: white;
 }
 
+.climastock-btn-primary:hover::before {
+  opacity: 1;
+}
+
+.climastock-btn-primary:hover i {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.climastock-btn-primary:active {
+  transform: translateY(-1px);
+}
+
+/* Botão secundário com glassmorphism */
 .climastock-btn-secondary {
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
   color: var(--clima-gray-700);
   border-color: var(--clima-gray-300);
-  box-shadow: var(--clima-shadow-sm);
+  box-shadow: var(--clima-shadow-md);
 }
 
 .climastock-btn-secondary:hover {
-  background: var(--clima-gray-50);
-  border-color: var(--clima-gray-400);
-  color: var(--clima-gray-900);
+  background: white;
+  border-color: var(--clima-primary);
+  color: var(--clima-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--clima-shadow-lg);
+}
+
+.climastock-btn-secondary:hover i {
+  transform: translateX(-4px);
 }
 
 .climastock-btn-outline {
@@ -223,14 +388,16 @@ body {
   background: var(--clima-gray-100);
   border-color: var(--clima-gray-400);
   color: var(--clima-gray-800);
+  transform: translateY(-2px);
 }
 
 /* ========================================
-   BUSCA
+   BUSCA ULTRA MODERNA
    ======================================== */
 
 .climastock-search-section {
-  margin-bottom: var(--clima-spacing-xl);
+  margin-bottom: var(--clima-spacing-2xl);
+  animation: scaleIn 0.5s ease-out 0.2s both;
 }
 
 .climastock-search-form {
@@ -242,133 +409,214 @@ body {
   align-items: center;
   gap: var(--clima-spacing-md);
   background: white;
-  padding: var(--clima-spacing-sm);
-  border-radius: var(--clima-radius-xl);
-  box-shadow: var(--clima-shadow-lg);
+  padding: var(--clima-spacing-md);
+  border-radius: var(--clima-radius-2xl);
+  box-shadow: var(--clima-shadow-xl);
   border: 2px solid var(--clima-gray-200);
   transition: var(--clima-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efeito de borda animada no foco */
+.climastock-search-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: var(--clima-gradient-primary);
+  border-radius: var(--clima-radius-2xl);
+  opacity: 0;
+  transition: var(--clima-transition);
+  z-index: -1;
 }
 
 .climastock-search-wrapper:focus-within {
-  border-color: var(--clima-primary);
-  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1), var(--clima-shadow-lg);
+  border-color: transparent;
+  box-shadow: var(--clima-shadow-2xl), var(--clima-shadow-glow);
+  transform: translateY(-2px);
+}
+
+.climastock-search-wrapper:focus-within::before {
+  opacity: 1;
 }
 
 .climastock-search-icon {
-  font-size: 1.5rem;
-  color: var(--clima-gray-400);
+  font-size: 1.75rem;
+  color: var(--clima-primary);
   margin-left: var(--clima-spacing-sm);
+  transition: var(--clima-transition);
+}
+
+.climastock-search-wrapper:focus-within .climastock-search-icon {
+  transform: scale(1.1);
+  color: var(--clima-secondary);
 }
 
 .climastock-search-input {
   flex: 1;
   border: none;
   outline: none;
-  font-size: var(--clima-font-size-base);
+  font-size: var(--clima-font-size-lg);
   color: var(--clima-gray-800);
   background: transparent;
   padding: var(--clima-spacing-sm);
+  font-weight: 500;
 }
 
 .climastock-search-input::placeholder {
   color: var(--clima-gray-400);
+  font-weight: 400;
 }
 
 .climastock-search-btn {
-  padding: var(--clima-spacing-sm) var(--clima-spacing-lg);
-  background: linear-gradient(
-    135deg,
-    var(--clima-primary),
-    var(--clima-secondary)
-  );
+  padding: var(--clima-spacing-md) var(--clima-spacing-xl);
+  background: var(--clima-gradient-primary);
   color: white;
   border: none;
   border-radius: var(--clima-radius-lg);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: var(--clima-font-size-base);
   cursor: pointer;
   transition: var(--clima-transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: var(--clima-shadow-md);
 }
 
 .climastock-search-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--clima-shadow-md);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--clima-shadow-lg), var(--clima-shadow-glow);
 }
 
 .climastock-clear-btn {
   display: flex;
   align-items: center;
   gap: var(--clima-spacing-xs);
-  padding: var(--clima-spacing-sm) var(--clima-spacing-md);
+  padding: var(--clima-spacing-md) var(--clima-spacing-lg);
   background: var(--clima-gray-100);
   color: var(--clima-gray-600);
   border-radius: var(--clima-radius-lg);
   text-decoration: none;
   font-size: var(--clima-font-size-sm);
-  font-weight: 500;
+  font-weight: 600;
   transition: var(--clima-transition);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .climastock-clear-btn:hover {
-  background: var(--clima-gray-200);
-  color: var(--clima-gray-800);
+  background: var(--clima-danger);
+  color: white;
+  transform: scale(1.05);
 }
 
 /* ========================================
-   GRID DE CARDS
+   GRID DE CARDS ULTRA MODERNO
    ======================================== */
 
 .climastock-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--clima-spacing-lg);
-  margin-bottom: var(--clima-spacing-xl);
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--clima-spacing-xl);
+  margin-bottom: var(--clima-spacing-2xl);
 }
 
 .climastock-card {
   background: white;
-  border-radius: var(--clima-radius-xl);
-  box-shadow: var(--clima-shadow-md);
-  border: 1px solid var(--clima-gray-200);
+  border-radius: var(--clima-radius-2xl);
+  box-shadow: var(--clima-shadow-lg);
+  border: 2px solid var(--clima-gray-200);
   overflow: hidden;
   transition: var(--clima-transition);
+  position: relative;
+  animation: scaleIn 0.5s ease-out both;
+}
+
+/* Efeito de borda gradiente no hover */
+.climastock-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: var(--clima-gradient-primary);
+  border-radius: var(--clima-radius-2xl);
+  opacity: 0;
+  transition: var(--clima-transition);
+  z-index: -1;
 }
 
 .climastock-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--clima-shadow-xl);
-  border-color: var(--clima-primary);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--clima-shadow-2xl), var(--clima-shadow-glow);
+  border-color: transparent;
+}
+
+.climastock-card:hover::before {
+  opacity: 1;
 }
 
 .climastock-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--clima-spacing-lg);
+  padding: var(--clima-spacing-xl);
   background: linear-gradient(
     135deg,
     var(--clima-gray-50),
     var(--clima-gray-100)
   );
-  border-bottom: 1px solid var(--clima-gray-200);
+  border-bottom: 2px solid var(--clima-gray-200);
+  position: relative;
+}
+
+/* Padrão decorativo no header */
+.climastock-card-header::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clima-gradient-primary);
+  transform: scaleX(0);
+  transition: var(--clima-transition);
+}
+
+.climastock-card:hover .climastock-card-header::after {
+  transform: scaleX(1);
 }
 
 .climastock-card-badge {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    135deg,
-    var(--clima-primary),
-    var(--clima-secondary)
-  );
-  border-radius: var(--clima-radius-lg);
+  background: var(--clima-gradient-primary);
+  border-radius: var(--clima-radius-xl);
+  box-shadow: var(--clima-shadow-lg), var(--clima-shadow-glow);
+  transition: var(--clima-transition);
+  position: relative;
+}
+
+.climastock-card-badge::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: var(--clima-gradient-primary);
+  border-radius: var(--clima-radius-xl);
+  opacity: 0.2;
+  filter: blur(8px);
+  z-index: -1;
+}
+
+.climastock-card:hover .climastock-card-badge {
+  transform: rotate(10deg) scale(1.1);
 }
 
 .climastock-card-badge i {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .climastock-card-actions {
@@ -376,57 +624,73 @@ body {
 }
 
 .climastock-dropdown-toggle {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: white;
-  border: 1px solid var(--clima-gray-300);
-  border-radius: var(--clima-radius-md);
+  border: 2px solid var(--clima-gray-300);
+  border-radius: var(--clima-radius-lg);
   cursor: pointer;
   transition: var(--clima-transition);
+  box-shadow: var(--clima-shadow-sm);
 }
 
 .climastock-dropdown-toggle:hover {
-  background: var(--clima-gray-100);
-  border-color: var(--clima-gray-400);
+  background: var(--clima-primary);
+  border-color: var(--clima-primary);
+  transform: rotate(90deg);
+  box-shadow: var(--clima-shadow-md);
+}
+
+.climastock-dropdown-toggle:hover i {
+  color: white;
 }
 
 .climastock-dropdown-toggle i {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--clima-gray-600);
+  transition: var(--clima-transition);
 }
 
 .climastock-dropdown-menu {
-  min-width: 180px;
+  min-width: 200px;
   padding: var(--clima-spacing-sm);
-  border-radius: var(--clima-radius-lg);
-  border: 1px solid var(--clima-gray-200);
-  box-shadow: var(--clima-shadow-xl);
+  border-radius: var(--clima-radius-xl);
+  border: 2px solid var(--clima-gray-200);
+  box-shadow: var(--clima-shadow-2xl);
+  background: white;
+  backdrop-filter: blur(10px);
 }
 
 .climastock-dropdown-item {
   display: flex;
   align-items: center;
-  gap: var(--clima-spacing-sm);
-  padding: var(--clima-spacing-sm) var(--clima-spacing-md);
-  border-radius: var(--clima-radius-md);
+  gap: var(--clima-spacing-md);
+  padding: var(--clima-spacing-md) var(--clima-spacing-lg);
+  border-radius: var(--clima-radius-lg);
   color: var(--clima-gray-700);
   text-decoration: none;
-  font-size: var(--clima-font-size-sm);
-  font-weight: 500;
+  font-size: var(--clima-font-size-base);
+  font-weight: 600;
   transition: var(--clima-transition);
   cursor: pointer;
 }
 
 .climastock-dropdown-item:hover {
-  background: var(--clima-gray-100);
-  color: var(--clima-gray-900);
+  background: var(--clima-primary);
+  color: white;
+  transform: translateX(4px);
 }
 
 .climastock-dropdown-item i {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
+  transition: var(--clima-transition);
+}
+
+.climastock-dropdown-item:hover i {
+  transform: scale(1.2);
 }
 
 .climastock-dropdown-item-danger {
@@ -434,41 +698,54 @@ body {
 }
 
 .climastock-dropdown-item-danger:hover {
-  background: rgba(239, 68, 68, 0.1);
-  color: var(--clima-danger);
+  background: var(--clima-danger);
+  color: white;
 }
 
 .climastock-card-body {
-  padding: var(--clima-spacing-lg);
+  padding: var(--clima-spacing-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--clima-spacing-md);
+  gap: var(--clima-spacing-lg);
+  background: white;
 }
 
 .climastock-card-field {
   display: flex;
   flex-direction: column;
   gap: var(--clima-spacing-xs);
+  padding: var(--clima-spacing-md);
+  background: var(--clima-gray-50);
+  border-radius: var(--clima-radius-lg);
+  border-left: 4px solid var(--clima-primary);
+  transition: var(--clima-transition);
+}
+
+.climastock-card-field:hover {
+  background: var(--clima-gray-100);
+  border-left-color: var(--clima-secondary);
+  transform: translateX(4px);
 }
 
 .climastock-field-label {
   font-size: var(--clima-font-size-xs);
-  font-weight: 600;
+  font-weight: 800;
   color: var(--clima-gray-500);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }
 
 .climastock-field-value {
-  font-size: var(--clima-font-size-base);
-  font-weight: 500;
-  color: var(--clima-gray-800);
+  font-size: var(--clima-font-size-lg);
+  font-weight: 700;
+  color: var(--clima-gray-900);
+  word-break: break-word;
 }
 
 .climastock-card-footer {
-  padding: var(--clima-spacing-lg);
-  background: var(--clima-gray-50);
-  border-top: 1px solid var(--clima-gray-200);
+  padding: var(--clima-spacing-xl);
+  background: linear-gradient(135deg, var(--clima-gray-50), white);
+  border-top: 2px solid var(--clima-gray-200);
 }
 
 .climastock-card-link {
@@ -477,57 +754,94 @@ body {
   justify-content: space-between;
   color: var(--clima-primary);
   text-decoration: none;
-  font-size: var(--clima-font-size-sm);
-  font-weight: 600;
+  font-size: var(--clima-font-size-base);
+  font-weight: 700;
   transition: var(--clima-transition);
+  padding: var(--clima-spacing-sm);
+  border-radius: var(--clima-radius-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .climastock-card-link:hover {
-  color: var(--clima-primary-dark);
-  gap: var(--clima-spacing-md);
+  background: var(--clima-primary);
+  color: white;
+  padding-left: var(--clima-spacing-lg);
+  padding-right: var(--clima-spacing-lg);
 }
 
 .climastock-card-link i {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   transition: var(--clima-transition);
 }
 
+.climastock-card-link:hover i {
+  transform: translateX(8px);
+}
+
 /* ========================================
-   FORMULÁRIO
+   FORMULÁRIO ULTRA MODERNO
    ======================================== */
 
 .climastock-form {
   width: 100%;
+  animation: scaleIn 0.5s ease-out 0.3s both;
 }
 
 .climastock-form-card {
   background: white;
-  border-radius: var(--clima-radius-xl);
-  box-shadow: var(--clima-shadow-lg);
-  border: 1px solid var(--clima-gray-200);
+  border-radius: var(--clima-radius-2xl);
+  box-shadow: var(--clima-shadow-2xl);
+  border: 2px solid var(--clima-gray-200);
   overflow: hidden;
+  position: relative;
+}
+
+/* Borda gradiente decorativa */
+.climastock-form-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--clima-gradient-primary);
 }
 
 .climastock-alert {
   display: flex;
-  gap: var(--clima-spacing-md);
-  padding: var(--clima-spacing-lg);
-  border-radius: var(--clima-radius-lg);
-  margin: var(--clima-spacing-lg);
+  gap: var(--clima-spacing-lg);
+  padding: var(--clima-spacing-xl);
+  border-radius: var(--clima-radius-xl);
+  margin: var(--clima-spacing-xl);
+  animation: slideIn 0.5s ease-out;
 }
 
 .climastock-alert-danger {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid var(--clima-danger);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.1),
+    rgba(239, 68, 68, 0.05)
+  );
+  border: 2px solid var(--clima-danger);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
 }
 
 .climastock-alert-icon {
   flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--clima-danger);
+  border-radius: var(--clima-radius-lg);
+  box-shadow: var(--clima-shadow-lg);
 }
 
 .climastock-alert-icon i {
-  font-size: 1.5rem;
-  color: var(--clima-danger);
+  font-size: 1.75rem;
+  color: white;
 }
 
 .climastock-alert-content {
@@ -535,10 +849,12 @@ body {
 }
 
 .climastock-alert-title {
-  font-size: var(--clima-font-size-base);
-  font-weight: 700;
+  font-size: var(--clima-font-size-lg);
+  font-weight: 800;
   color: var(--clima-danger);
-  margin-bottom: var(--clima-spacing-xs);
+  margin-bottom: var(--clima-spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .climastock-alert-list {
@@ -549,18 +865,28 @@ body {
 }
 
 .climastock-alert-list li {
-  font-size: var(--clima-font-size-sm);
+  font-size: var(--clima-font-size-base);
   color: var(--clima-danger);
+  font-weight: 600;
+  padding-left: var(--clima-spacing-md);
+  position: relative;
+}
+
+.climastock-alert-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  font-weight: 900;
 }
 
 .climastock-form-body {
-  padding: var(--clima-spacing-xl);
+  padding: var(--clima-spacing-2xl);
 }
 
 .climastock-form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--clima-spacing-lg);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--clima-spacing-xl);
 }
 
 .climastock-form-group {
@@ -571,80 +897,106 @@ body {
 
 .climastock-label {
   font-size: var(--clima-font-size-sm);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--clima-gray-700);
   margin-bottom: var(--clima-spacing-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.climastock-input-wrapper {
+  position: relative;
 }
 
 .climastock-input {
   width: 100%;
-  padding: var(--clima-spacing-md);
+  padding: var(--clima-spacing-lg);
   font-size: var(--clima-font-size-base);
   color: var(--clima-gray-800);
   background: white;
   border: 2px solid var(--clima-gray-300);
-  border-radius: var(--clima-radius-lg);
+  border-radius: var(--clima-radius-xl);
   transition: var(--clima-transition);
+  font-weight: 500;
 }
 
 .climastock-input:focus {
   outline: none;
   border-color: var(--clima-primary);
-  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1);
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1), var(--clima-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.climastock-input:hover {
+  border-color: var(--clima-gray-400);
 }
 
 .climastock-form-footer {
-  padding: var(--clima-spacing-lg) var(--clima-spacing-xl);
-  background: var(--clima-gray-50);
-  border-top: 1px solid var(--clima-gray-200);
+  padding: var(--clima-spacing-xl) var(--clima-spacing-2xl);
+  background: linear-gradient(135deg, var(--clima-gray-50), white);
+  border-top: 2px solid var(--clima-gray-200);
 }
 
 .climastock-form-actions {
   display: flex;
   justify-content: flex-end;
-  gap: var(--clima-spacing-md);
+  gap: var(--clima-spacing-lg);
 }
 
 /* ========================================
-   PAGINAÇÃO
+   PAGINAÇÃO MODERNA
    ======================================== */
 
 .climastock-pagination {
   display: flex;
   justify-content: center;
-  margin-top: var(--clima-spacing-xl);
+  margin-top: var(--clima-spacing-2xl);
+  animation: fadeIn 0.5s ease-out 0.4s both;
 }
 
 .climastock-page-link {
-  padding: var(--clima-spacing-sm) var(--clima-spacing-md);
+  padding: var(--clima-spacing-md) var(--clima-spacing-lg);
   margin: 0 var(--clima-spacing-xs);
   background: white;
   color: var(--clima-gray-700);
-  border: 1px solid var(--clima-gray-300);
-  border-radius: var(--clima-radius-md);
+  border: 2px solid var(--clima-gray-300);
+  border-radius: var(--clima-radius-lg);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   transition: var(--clima-transition);
+  box-shadow: var(--clima-shadow-sm);
 }
 
 .climastock-page-link:hover {
-  background: var(--clima-primary);
+  background: var(--clima-gradient-primary);
   color: white;
-  border-color: var(--clima-primary);
+  border-color: transparent;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--clima-shadow-lg), var(--clima-shadow-glow);
 }
 
 /* ========================================
-   RESPONSIVIDADE
+   RESPONSIVIDADE APRIMORADA
    ======================================== */
 
 @media (max-width: 768px) {
   .climastock-page {
-    padding: var(--clima-spacing-md);
+    padding: var(--clima-spacing-lg);
+  }
+
+  .climastock-page-title {
+    font-size: var(--clima-font-size-2xl);
+  }
+
+  .climastock-icon-wrapper {
+    width: 60px;
+    height: 60px;
   }
 
   .climastock-header-content {
     flex-direction: column;
     align-items: flex-start;
+    padding: var(--clima-spacing-lg);
   }
 
   .climastock-cards-grid {
@@ -663,4 +1015,27 @@ body {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* ========================================
+   ANIMAÇÕES DE ENTRADA ESCALONADAS
+   ======================================== */
+
+.climastock-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.climastock-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.climastock-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.climastock-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.climastock-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.climastock-card:nth-child(6) {
+  animation-delay: 0.6s;
 }
