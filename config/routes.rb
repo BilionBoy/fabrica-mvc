@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :status_empresas
   root 'home#index'
   get 'home/index'
   
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   resources :estados
   resources :paises
   resources :unidades_medida
+  resources :status_empresas
 
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check
