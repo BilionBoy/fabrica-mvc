@@ -1,6 +1,4 @@
-
 <div class="climastock-page">
-  
   <div class="climastock-page-header">
     <div class="climastock-header-content">
       <div class="climastock-header-left">
@@ -9,7 +7,7 @@
         </div>
         <div class="climastock-header-text">
           <h1 class="climastock-page-title">
-            <%= @produto.new_record? ? "Novo" : "Editar" %> 
+            <%= @produto.new_record? ? "Novo" : "Editar" %>
             <%= Produto.model_name.human %>
           </h1>
           <p class="climastock-page-subtitle">
@@ -19,118 +17,101 @@
       </div>
       <div class="climastock-header-right">
         <%= link_to produtos_path, class: "climastock-btn climastock-btn-secondary" do %>
-        <i class="ph-arrow-left"></i>
-        <span>Voltar</span>
+          <i class="ph-arrow-left"></i>
+          <span>Voltar</span>
         <% end %>
       </div>
     </div>
   </div>
-  
   <%= simple_form_for(@produto, html: { class: "climastock-form" }) do |f| %>
-  <div class="climastock-form-card">
-    
-    <% if @produto.errors.any? %>
-    <div class="climastock-alert climastock-alert-danger">
-      <div class="climastock-alert-icon">
-        <i class="ph-warning-circle"></i>
-      </div>
-      <div class="climastock-alert-content">
-        <h4 class="climastock-alert-title">
-          <%= pluralize(@produto.errors.count, "erro") %> encontrado<%= @produto.errors.count > 1 ? "s" : "" %>
-        </h4>
-        <ul class="climastock-alert-list">
-          <% @produto.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
+    <div class="climastock-form-card">
+      <% if @produto.errors.any? %>
+        <div class="climastock-alert climastock-alert-danger">
+          <div class="climastock-alert-icon">
+            <i class="ph-warning-circle"></i>
+          </div>
+          <div class="climastock-alert-content">
+            <h4 class="climastock-alert-title">
+              <%= pluralize(@produto.errors.count, "erro") %> encontrado<%= @produto.errors.count > 1 ? "s" : "" %>
+            </h4>
+            <ul class="climastock-alert-list">
+              <% @produto.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <div class="climastock-form-body">
+        <div class="climastock-form-grid">
+          <div class="climastock-form-group">
+            <%= f.input :empresa_id,  as: :select,  collection: Empresa.all.map { |p| [p.nome_fantasia, p.id] }, include_blank: "Selecione a Empresa", wrapper_html: { class: "climastock-input-wrapper" },  input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
+          </div>
+          <%= f.input :categoria_produto_id,  as: :select,  collection: CategoriaProduto.all.map { |p| [p.nome, p.id] }, include_blank: "Selecione a Categoria do Produto", wrapper_html: { class: "climastock-input-wrapper" },  input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :unidade_medida_id,  as: :select,  collection: UnidadeMedida.all.map { |p| [p.nome, p.id] }, include_blank: "Selecione a Unidade de Medida", wrapper_html: { class: "climastock-input-wrapper" },  input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :nome, wrapper_html: { class: "climastock-input-wrapper" }, input_html: { class: "climastock-input" },label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :descricao,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :codigo_interno,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :codigo_barras,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :preco_custo,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :preco_venda,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :estoque_minimo,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+        </div>
+        <div class="climastock-form-group">
+          <%= f.input :ativo,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+        </div>
       </div>
     </div>
-    <% end %>
-    
-    <div class="climastock-form-body">
-      <div class="climastock-form-grid">
-                  <div class="climastock-form-group">
-            <%= f.association :empresa,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.association :categoria_produto,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.association :unidade_medida,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :nome,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :descricao,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :codigo_interno,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :codigo_barras,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :preco_custo,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :preco_venda,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :estoque_minimo,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :ativo,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-              </div>
-    </div>
-    
     <div class="climastock-form-footer">
       <div class="climastock-form-actions">
         <%= link_to produtos_path, class: "climastock-btn climastock-btn-outline" do %>
-        <i class="ph-x"></i>
-        <span>Cancelar</span>
+          <i class="ph-x"></i>
+          <span>Cancelar</span>
         <% end %>
         <%= f.button :submit, 
                 class: "climastock-btn climastock-btn-primary" do %>
           <i class="ph-check-circle"></i>
           <span><%= @produto.new_record? ? "Criar Registro" : "Salvar Alterações" %></span>
-          <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
   </div>
+<% end %>
+</div>

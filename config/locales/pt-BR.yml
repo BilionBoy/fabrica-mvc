@@ -88,8 +88,9 @@ pt-BR:
         descricao: "Descrição"
         preco: "Preço"
         categoria: "Categoria"
-        quantidade_estoque: "Quantidade em Estoque"
-
+        quantidade_estoque_id: "Quantidade em Estoque"
+        unidade_medida_id: "Unidade de Medida"
+        empresa_id: "Empresa"
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"
