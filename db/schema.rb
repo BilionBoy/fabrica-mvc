@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_16_060126) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_16_120707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "estados", force: :cascade do |t|
+    t.string "nome"
+    t.string "sigla"
+    t.bigint "pais_id"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pais_id"], name: "index_estados_on_pais_id"
+  end
 
   create_table "paises", force: :cascade do |t|
     t.string "nome"
@@ -32,4 +44,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_060126) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "estados", "paises"
 end

@@ -11,9 +11,12 @@ pt-BR:
 
   activerecord:
     models:
-      funcao:
-        one: "Função"
-        other: "Funções"
+      estado:
+        one: "Estado"
+        other: "Estados"
+      pais:
+        one: "País"
+        other: "Países"
       categoria:
         one: "Categoria"
         other: "Categorias"
@@ -24,17 +27,13 @@ pt-BR:
         one: "Unidade de Medida"
         other: "Unidades de Medida"
     attributes:
-      funcao:
+      estado:
         nome: "Nome"
-        descricao: "Descrição"
-      estabelecimento:
+        sigla: "Sigla"
+        pais_id: "País"
+      pais:
         nome: "Nome"
-        cnpj: "CNPJ"
-        endereco: "Endereço"
-        telefone: "Telefone"
-      user_estabelecimento:
-        nome: "Usuário"
-        estabelecimento: "Estabelecimento"
+        sigla: "Sigla"
       categoria:
         nome: "Nome"
         descricao: "Descrição"
