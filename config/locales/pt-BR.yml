@@ -29,6 +29,9 @@ pt-BR:
       empresa:
         one: "Empresa"
         other: "Empresas"
+      filial:
+        one: "Filial"
+        other: "Filiais"
       categoria:
         one: "Categoria"
         other: "Categorias"
@@ -62,6 +65,11 @@ pt-BR:
         email: "Email"
         municipio_id: "Município"
         status_empresa_id: "Status da Empresa"
+      filial:
+       nome: "Nome"
+       descricoa: "Descrição"
+       empresa_id: "Empresa"
+       municipio_id: "Município"
       pais:
         nome: "Nome"
         sigla: "Sigla"
