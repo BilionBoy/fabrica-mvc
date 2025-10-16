@@ -1,6 +1,4 @@
-
 <div class="climastock-page">
-  
   <div class="climastock-page-header">
     <div class="climastock-header-content">
       <div class="climastock-header-left">
@@ -16,13 +14,12 @@
       </div>
       <div class="climastock-header-right">
         <%= link_to new_bairro_path, class: "climastock-btn climastock-btn-primary" do %>
-        <i class="ph-plus-circle"></i>
-        <span>Novo Registro</span>
+          <i class="ph-plus-circle"></i>
+          <span>Novo Registro</span>
         <% end %>
       </div>
     </div>
   </div>
-  
   <div class="climastock-search-section">
     <%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
       <div class="climastock-search-wrapper">
@@ -32,79 +29,73 @@
         placeholder: "Buscar registros..." %>
         <%= f.button type: 'submit', class: 'climastock-search-btn' do %>
           <span>Buscar</span>
-          <% end %>
-          <% if params[:q] %>
+        <% end %>
+        <% if params[:q] %>
           <%= link_to bairros_path, class: "climastock-clear-btn" do %>
-          <i class="ph-x-circle"></i>
-          <span>Limpar</span>
+            <i class="ph-x-circle"></i>
+            <span>Limpar</span>
           <% end %>
-          <% end %>
-        </div>
         <% end %>
       </div>
-      
-      <div class="climastock-cards-grid">
-        <% @bairros.each do |bairro| %>
-        <div class="climastock-card">
-          
-          <div class="climastock-card-header">
-            <div class="climastock-card-badge">
-              <i class="ph-cube"></i>
-            </div>
-            <div class="climastock-card-actions">
-              <div class="climastock-dropdown">
-                <button class="climastock-dropdown-toggle" data-bs-toggle="dropdown">
-                  <i class="ph-dots-three-vertical"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-end climastock-dropdown-menu">
-                  <%= link_to edit_bairro_path(bairro), class: "climastock-dropdown-item" do %>
+    <% end %>
+  </div>
+  <div class="climastock-cards-grid">
+    <% @bairros.each do |bairro| %>
+      <div class="climastock-card">
+        <div class="climastock-card-header">
+          <div class="climastock-card-badge">
+            <i class="ph-cube"></i>
+          </div>
+          <div class="climastock-card-actions">
+            <div class="climastock-dropdown">
+              <button class="climastock-dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="ph-dots-three-vertical"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end climastock-dropdown-menu">
+                <%= link_to edit_bairro_path(bairro), class: "climastock-dropdown-item" do %>
                   <i class="ph-pen"></i>
                   <span>Editar</span>
-                  <% end %>
-                  <%= form_for bairro, method: :delete do |f| %>
+                <% end %>
+                <%= form_for bairro, method: :delete do |f| %>
                   <a class="climastock-dropdown-item climastock-dropdown-item-danger" 
                      data-confirm-delete="<%= bairro_path(bairro) %>" 
                     data-csrf-token="<%= form_authenticity_token %>">
                     <i class="ph-trash"></i>
                     <span>Excluir</span>
                   </a>
-                  <% end %>
-                </div>
+                <% end %>
               </div>
             </div>
           </div>
-          
-          <div class="climastock-card-body">
-            
-              <div class="climastock-card-field">
-                <span class="climastock-field-label">
-                  <%= t("activerecord.attributes.bairro.nome") %>
-                </span>
-                <span class="climastock-field-value">
-                  <%= bairro.nome %>
-                </span>
-              </div>
-              <div class="climastock-card-field">
-                <span class="climastock-field-label">
-                  <%= t("activerecord.attributes.bairro.municipio") %>
-                </span>
-                <span class="climastock-field-value">
-                  <%= bairro.municipio %>
-                </span>
-              </div>
+        </div>
+        <div class="climastock-card-body">
+          <div class="climastock-card-field">
+            <span class="climastock-field-label">
+              <%= t("activerecord.attributes.bairro.nome") %>
+            </span>
+            <span class="climastock-field-value">
+              <%= bairro.nome %>
+            </span>
           </div>
-          
-          <div class="climastock-card-footer">
-            <%= link_to bairro_path(bairro), class: "climastock-card-link" do %>
-            <span>Ver detalhes</span>
-            <i class="ph-arrow-right"></i>
-            <% end %>
+          <div class="climastock-card-field">
+            <span class="climastock-field-label">
+              <%= t("activerecord.attributes.bairro.municipio") %>
+            </span>
+            <span class="climastock-field-value">
+              <%= bairro.municipio %>
+            </span>
           </div>
         </div>
-        <% end %>
+        <div class="climastock-card-footer">
+          <%= link_to bairro_path(bairro), class: "climastock-card-link" do %>
+            <span>Ver detalhes</span>
+            <i class="ph-arrow-right"></i>
+          <% end %>
+        </div>
       </div>
-      
-      <div class="climastock-pagination">
-        <%= pagy_bootstrap_nav(@pagy, link_extra: 'class="climastock-page-link"').html_safe %>
-      </div>
-    </div>
+    <% end %>
+  </div>
+  <div class="climastock-pagination">
+    <%= pagy_bootstrap_nav(@pagy, link_extra: 'class="climastock-page-link"').html_safe %>
+  </div>
+</div>
