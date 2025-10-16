@@ -48,10 +48,7 @@
             <%= f.input :nome, wrapper_html: { class: "climastock-input-wrapper" }, input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
           </div>
           <div class="climastock-form-group">
-            <%= f.input :sigla,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
+            <%= f.input :sigla,  wrapper_html: { class: "climastock-input-wrapper" }, input_html: { class: "climastock-input" },     label_html: { class: "climastock-label" } %>
           </div>
           <div class="climastock-form-group">
             <%= f.input :pais_id,  as: :select,  collection: Pais.all.map { |p| [p.nome, p.id] }, include_blank: "Selecione um país", wrapper_html: { class: "climastock-input-wrapper" },  input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>

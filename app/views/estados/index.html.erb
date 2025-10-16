@@ -24,9 +24,7 @@
     <%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
       <div class="climastock-search-wrapper">
         <i class="ph-magnifying-glass climastock-search-icon"></i>
-        <%= f.search_field :nome_cont, 
-        class: "climastock-search-input", 
-        placeholder: "Buscar registros..." %>
+        <%= f.search_field :nome_cont,  class: "climastock-search-input",  placeholder: "Buscar registros..." %>
         <%= f.button type: 'submit', class: 'climastock-search-btn' do %>
           <span>Buscar</span>
         <% end %>
