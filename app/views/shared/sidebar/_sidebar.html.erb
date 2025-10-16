@@ -1,5 +1,6 @@
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-xl" style="background: #005171;">
   <div class="sidebar-content">
+
     <!-- Cabeçalho -->
     <div class="sidebar-section">
       <div class="sidebar-section-body d-flex justify-content-center">
@@ -43,29 +44,49 @@
           </a>
         </li>
 
-      
+        <li class="nav-item-header mt-2">
+          <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Cadastros Básicos</div>
+        </li>
 
-        <!-- Categorias -->
+        <!-- Países -->
         <li class="nav-item">
-          <a href="<%= paises_path %>" class="nav-link" id="categorias-link" data-no-close>
-            <i class="ph-tag"></i>
-            <span>Categorias</span>
+          <a href="<%= paises_path %>" class="nav-link" id="paises-link" data-no-close>
+            <i class="ph-globe"></i>
+            <span>Países</span>
           </a>
         </li>
 
+        <!-- Estados -->
         <li class="nav-item">
-  <a href="<%= root_path %>" class="nav-link" id="produtos-link" data-no-close>
-    <i class="ph-package"></i>
-    <span>Produtos</span>
-  </a>
-</li>
+          <a href="<%= estados_path %>" class="nav-link" id="estados-link" data-no-close>
+            <i class="ph-map-trifold"></i>
+            <span>Estados</span>
+          </a>
+        </li>
 
-<li class="nav-item">
-  <a href="<%= unidades_medida_path %>" class="nav-link" id="unidades-link" data-no-close>
-    <i class="ph-ruler"></i>
-    <span>Unidades de Medida</span>
-  </a>
-</li>
+        <!-- Municípios -->
+        <li class="nav-item">
+          <a href="<%= municipios_path %>" class="nav-link" id="municipios-link" data-no-close>
+            <i class="ph-buildings"></i>
+            <span>Municípios</span>
+          </a>
+        </li>
+
+        <!-- Bairros -->
+        <li class="nav-item">
+          <a href="<%= bairros_path %>" class="nav-link" id="bairros-link" data-no-close>
+            <i class="ph-map-pin"></i>
+            <span>Bairros</span>
+          </a>
+        </li>
+
+        <!-- Unidades de Medida -->
+        <li class="nav-item">
+          <a href="<%= unidades_medida_path %>" class="nav-link" id="unidades-link" data-no-close>
+            <i class="ph-ruler"></i>
+            <span>Unidades de Medida</span>
+          </a>
+        </li>
 
       </ul>
     </div>
@@ -81,7 +102,6 @@
     navItems.forEach(item => {
       const text = item.textContent.toLowerCase();
       const isCollapsible = item.querySelector('.nav-group-sub');
-
       if (text.includes(filter)) {
         item.style.display = '';
         if (isCollapsible) isCollapsible.classList.add('show');
