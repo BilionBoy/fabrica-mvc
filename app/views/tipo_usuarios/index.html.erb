@@ -1,0 +1,102 @@
+
+<div class="climastock-page">
+  
+  <div class="climastock-page-header">
+    <div class="climastock-header-content">
+      <div class="climastock-header-left">
+        <div class="climastock-icon-wrapper">
+          <i class="ph-stack"></i>
+        </div>
+        <div class="climastock-header-text">
+          <h1 class="climastock-page-title">
+            <%= t("activerecord.models.#{TipoUsuario.model_name.i18n_key}.other") %>
+          </h1>
+          <p class="climastock-page-subtitle">Gerencie seus registros de forma eficiente e moderna</p>
+        </div>
+      </div>
+      <div class="climastock-header-right">
+        <%= link_to new_tipo_usuario_path, class: "climastock-btn climastock-btn-primary" do %>
+        <i class="ph-plus-circle"></i>
+        <span>Novo Registro</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="climastock-search-section">
+    <%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
+      <div class="climastock-search-wrapper">
+        <i class="ph-magnifying-glass climastock-search-icon"></i>
+        <%= f.search_field :descricao_cont, 
+        class: "climastock-search-input", 
+        placeholder: "Buscar registros..." %>
+        <%= f.button type: 'submit', class: 'climastock-search-btn' do %>
+          <span>Buscar</span>
+          <% end %>
+          <% if params[:q] %>
+          <%= link_to tipo_usuarios_path, class: "climastock-clear-btn" do %>
+          <i class="ph-x-circle"></i>
+          <span>Limpar</span>
+          <% end %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+      
+      <div class="climastock-cards-grid">
+        <% @tipo_usuarios.each do |tipo_usuario| %>
+        <div class="climastock-card">
+          
+          <div class="climastock-card-header">
+            <div class="climastock-card-badge">
+              <i class="ph-cube"></i>
+            </div>
+            <div class="climastock-card-actions">
+              <div class="climastock-dropdown">
+                <button class="climastock-dropdown-toggle" data-bs-toggle="dropdown">
+                  <i class="ph-dots-three-vertical"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end climastock-dropdown-menu">
+                  <%= link_to edit_tipo_usuario_path(tipo_usuario), class: "climastock-dropdown-item" do %>
+                  <i class="ph-pen"></i>
+                  <span>Editar</span>
+                  <% end %>
+                  <%= form_for tipo_usuario, method: :delete do |f| %>
+                  <a class="climastock-dropdown-item climastock-dropdown-item-danger" 
+                     data-confirm-delete="<%= tipo_usuario_path(tipo_usuario) %>" 
+                    data-csrf-token="<%= form_authenticity_token %>">
+                    <i class="ph-trash"></i>
+                    <span>Excluir</span>
+                  </a>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="climastock-card-body">
+            
+              <div class="climastock-card-field">
+                <span class="climastock-field-label">
+                  <%= t("activerecord.attributes.tipo_usuario.descricao") %>
+                </span>
+                <span class="climastock-field-value">
+                  <%= tipo_usuario.descricao %>
+                </span>
+              </div>
+          </div>
+          
+          <div class="climastock-card-footer">
+            <%= link_to tipo_usuario_path(tipo_usuario), class: "climastock-card-link" do %>
+            <span>Ver detalhes</span>
+            <i class="ph-arrow-right"></i>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      
+      <div class="climastock-pagination">
+        <%= pagy_bootstrap_nav(@pagy, link_extra: 'class="climastock-page-link"').html_safe %>
+      </div>
+    </div>

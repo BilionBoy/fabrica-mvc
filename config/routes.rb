@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tipo_usuarios
   resources :filiais
   root 'home#index'
   get 'home/index'

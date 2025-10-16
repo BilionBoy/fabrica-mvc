@@ -41,6 +41,9 @@ pt-BR:
       unidade_medida:
         one: "Unidade de Medida"
         other: "Unidades de Medida"
+      tipo_usuario:
+        one: "Tipo de Usuário"
+        other: "Tipos de Usuários"
     attributes:
       estado:
         nome: "Nome"
@@ -66,10 +69,12 @@ pt-BR:
         municipio_id: "Município"
         status_empresa_id: "Status da Empresa"
       filial:
-       nome: "Nome"
-       descricoa: "Descrição"
-       empresa_id: "Empresa"
-       municipio_id: "Município"
+        nome: "Nome"
+        descricao: "Descrição"
+        empresa_id: "Empresa"
+        municipio_id: "Município"
+      tipo_usuario:
+        descricao: "Descrição"
       pais:
         nome: "Nome"
         sigla: "Sigla"
