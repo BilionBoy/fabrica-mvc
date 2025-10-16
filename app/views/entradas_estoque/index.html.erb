@@ -7,13 +7,13 @@
         </div>
         <div class="climastock-header-text">
           <h1 class="climastock-page-title">
-            <%= t("activerecord.models.#{Produto.model_name.i18n_key}.other") %>
+            <%= t("activerecord.models.#{EntradaEstoque.model_name.i18n_key}.other") %>
           </h1>
           <p class="climastock-page-subtitle">Gerencie seus registros de forma eficiente e moderna</p>
         </div>
       </div>
       <div class="climastock-header-right">
-        <%= link_to new_produto_path, class: "climastock-btn climastock-btn-primary" do %>
+        <%= link_to new_entrada_estoque_path, class: "climastock-btn climastock-btn-primary" do %>
           <i class="ph-plus-circle"></i>
           <span>Novo Registro</span>
         <% end %>
@@ -24,12 +24,14 @@
     <%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
       <div class="climastock-search-wrapper">
         <i class="ph-magnifying-glass climastock-search-icon"></i>
-        <%= f.search_field :empresa_nome_fantasia_cont,  class: "climastock-search-input",  placeholder: "Buscar registros..." %>
+        <%= f.search_field :empresa_nome_fantasia_cont, 
+        class: "climastock-search-input", 
+        placeholder: "Buscar registros..." %>
         <%= f.button type: 'submit', class: 'climastock-search-btn' do %>
           <span>Buscar</span>
         <% end %>
         <% if params[:q] %>
-          <%= link_to produtos_path, class: "climastock-clear-btn" do %>
+          <%= link_to entradas_estoque_path, class: "climastock-clear-btn" do %>
             <i class="ph-x-circle"></i>
             <span>Limpar</span>
           <% end %>
@@ -38,7 +40,7 @@
     <% end %>
   </div>
   <div class="climastock-cards-grid">
-    <% @produtos.each do |produto| %>
+    <% @entradas_estoque.each do |entrada_estoque| %>
       <div class="climastock-card">
         <div class="climastock-card-header">
           <div class="climastock-card-badge">
@@ -50,13 +52,13 @@
                 <i class="ph-dots-three-vertical"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-end climastock-dropdown-menu">
-                <%= link_to edit_produto_path(produto), class: "climastock-dropdown-item" do %>
+                <%= link_to edit_entrada_estoque_path(entrada_estoque), class: "climastock-dropdown-item" do %>
                   <i class="ph-pen"></i>
                   <span>Editar</span>
                 <% end %>
-                <%= form_for produto, method: :delete do |f| %>
+                <%= form_for entrada_estoque, method: :delete do |f| %>
                   <a class="climastock-dropdown-item climastock-dropdown-item-danger" 
-                     data-confirm-delete="<%= produto_path(produto) %>" 
+                     data-confirm-delete="<%= entrada_estoque_path(entrada_estoque) %>" 
                     data-csrf-token="<%= form_authenticity_token %>">
                     <i class="ph-trash"></i>
                     <span>Excluir</span>
@@ -69,39 +71,39 @@
         <div class="climastock-card-body">
           <div class="climastock-card-field">
             <span class="climastock-field-label">
-              <%= t("activerecord.attributes.produto.empresa") %>
+              <%= t("activerecord.attributes.entrada_estoque.empresa") %>
             </span>
             <span class="climastock-field-value">
-              <%= produto.empresa&.nome_fantasia %>
+              <%= entrada_estoque.empresa&.nome_fantasia %>
             </span>
           </div>
           <div class="climastock-card-field">
             <span class="climastock-field-label">
-              <%= t("activerecord.attributes.produto.categoria_produto") %>
+              <%= t("activerecord.attributes.entrada_estoque.produto") %>
             </span>
             <span class="climastock-field-value">
-              <%= produto.categoria_produto&.nome%>
+              <%= entrada_estoque.produto&.nome %>
             </span>
           </div>
           <div class="climastock-card-field">
             <span class="climastock-field-label">
-              <%= t("activerecord.attributes.produto.unidade_medida") %>
+              <%= t("activerecord.attributes.entrada_estoque.quantidade") %>
             </span>
             <span class="climastock-field-value">
-              <%= produto.unidade_medida&.nome %>
+              <%= entrada_estoque.quantidade %>
             </span>
           </div>
           <div class="climastock-card-field">
             <span class="climastock-field-label">
-              <%= t("activerecord.attributes.produto.nome") %>
+              <%= t("activerecord.attributes.entrada_estoque.preco_custo") %>
             </span>
             <span class="climastock-field-value">
-              <%= produto.nome %>
+              <%= entrada_estoque.preco_custo %>
             </span>
           </div>
         </div>
         <div class="climastock-card-footer">
-          <%= link_to produto_path(produto), class: "climastock-card-link" do %>
+          <%= link_to entrada_estoque_path(entrada_estoque), class: "climastock-card-link" do %>
             <span>Ver detalhes</span>
             <i class="ph-arrow-right"></i>
           <% end %>

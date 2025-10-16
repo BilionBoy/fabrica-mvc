@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_16_135848) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_16_211759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,22 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_135848) do
     t.datetime "updated_at", null: false
     t.index ["municipio_id"], name: "index_empresas_on_municipio_id"
     t.index ["status_empresa_id"], name: "index_empresas_on_status_empresa_id"
+  end
+
+  create_table "entradas_estoque", force: :cascade do |t|
+    t.bigint "empresa_id", null: false
+    t.bigint "produto_id", null: false
+    t.integer "quantidade", null: false
+    t.decimal "preco_custo", precision: 10, scale: 2, null: false
+    t.date "data_entrada", null: false
+    t.text "observacao"
+    t.integer "created_by"
+    t.integer "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_entradas_estoque_on_empresa_id"
+    t.index ["produto_id"], name: "index_entradas_estoque_on_produto_id"
   end
 
   create_table "estados", force: :cascade do |t|
@@ -165,12 +181,17 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_135848) do
     t.text "descricao"
   end
 
+  add_foreign_key "bairros", "municipios"
   add_foreign_key "categoria_produtos", "empresas"
+  add_foreign_key "distritos", "municipios"
   add_foreign_key "empresas", "municipios"
   add_foreign_key "empresas", "status_empresas"
+  add_foreign_key "entradas_estoque", "empresas"
+  add_foreign_key "entradas_estoque", "produtos"
   add_foreign_key "estados", "paises"
   add_foreign_key "filiais", "empresas"
   add_foreign_key "filiais", "municipios"
+  add_foreign_key "municipios", "estados"
   add_foreign_key "produtos", "categoria_produtos"
   add_foreign_key "produtos", "empresas"
   add_foreign_key "produtos", "unidades_medida"

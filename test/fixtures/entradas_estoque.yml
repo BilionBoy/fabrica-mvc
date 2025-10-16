@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empresa: one
+  produto: one
+  quantidade: 1
+  preco_custo: 9.99
+  data_entrada: 2025-10-16
+  observacao: MyText
+  created_by: 1
+
+two:
+  empresa: two
+  produto: two
+  quantidade: 1
+  preco_custo: 9.99
+  data_entrada: 2025-10-16
+  observacao: MyText
+  created_by: 1

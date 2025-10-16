@@ -12,5 +12,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'categoria_produto', 'categorias_produtos'
   inflect.irregular 'produto',           'produtos'
   inflect.irregular 'unidade_medida',    'unidades_medida'
+  inflect.irregular 'entrada_estoque',   'entradas_estoque'
   inflect.irregular 'tipo_usuario',      'tipo_usuarios'
 end
