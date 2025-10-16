@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_16_135245) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_16_135848) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -114,6 +114,28 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_135245) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "produtos", force: :cascade do |t|
+    t.bigint "empresa_id", null: false
+    t.bigint "categoria_produto_id", null: false
+    t.bigint "unidade_medida_id", null: false
+    t.string "nome", null: false
+    t.text "descricao"
+    t.string "codigo_interno"
+    t.string "codigo_barras"
+    t.decimal "preco_custo", precision: 10, scale: 2
+    t.decimal "preco_venda", precision: 10, scale: 2
+    t.integer "estoque_minimo", default: 0
+    t.boolean "ativo", default: true
+    t.integer "created_by"
+    t.integer "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["categoria_produto_id"], name: "index_produtos_on_categoria_produto_id"
+    t.index ["empresa_id"], name: "index_produtos_on_empresa_id"
+    t.index ["unidade_medida_id"], name: "index_produtos_on_unidade_medida_id"
+  end
+
   create_table "status_empresas", force: :cascade do |t|
     t.string "descricao"
     t.string "created_by"
@@ -149,4 +171,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_135245) do
   add_foreign_key "estados", "paises"
   add_foreign_key "filiais", "empresas"
   add_foreign_key "filiais", "municipios"
+  add_foreign_key "produtos", "categoria_produtos"
+  add_foreign_key "produtos", "empresas"
+  add_foreign_key "produtos", "unidades_medida"
 end
