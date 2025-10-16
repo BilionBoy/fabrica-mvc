@@ -5,7 +5,7 @@ class CreateDistritos < ActiveRecord::Migration[7.2]
     unless table_exists?(:distritos)
       create_table :distritos do |t|
       t.string :nome
-      t.references :municipio
+      t.references :municipio, foreign_key: true
           
       t.string :created_by
       t.string :updated_by

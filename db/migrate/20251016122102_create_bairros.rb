@@ -5,7 +5,7 @@ class CreateBairros < ActiveRecord::Migration[7.2]
     unless table_exists?(:bairros)
       create_table :bairros do |t|
       t.string :nome
-      t.references :municipio
+      t.references :municipio, foreign_key: true
           
       t.string :created_by
       t.string :updated_by

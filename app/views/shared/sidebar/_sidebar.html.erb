@@ -49,46 +49,6 @@
           <div class="text-uppercase fs-sm lh-sm opacity-50 sidebar-resize-hide">Cadastros Básicos</div>
         </li>
 
-        <!-- Países -->
-        <li class="nav-item">
-          <a href="<%= paises_path %>" class="nav-link" id="paises-link" data-no-close>
-            <i class="ph-globe"></i>
-            <span>Países</span>
-          </a>
-        </li>
-
-        <!-- Estados -->
-        <li class="nav-item">
-          <a href="<%= estados_path %>" class="nav-link" id="estados-link" data-no-close>
-            <i class="ph-map-trifold"></i>
-            <span>Estados</span>
-          </a>
-        </li>
-
-        <!-- Municípios -->
-        <li class="nav-item">
-          <a href="<%= municipios_path %>" class="nav-link" id="municipios-link" data-no-close>
-            <i class="ph-buildings"></i>
-            <span>Municípios</span>
-          </a>
-        </li>
-
-        <!-- Distritos -->
-        <li class="nav-item">
-          <a href="<%= distritos_path %>" class="nav-link" id="distritos-link" data-no-close>
-            <i class="ph-map-pin-line"></i>
-            <span>Distritos</span>
-          </a>
-        </li>
-
-        <!-- Bairros -->
-        <li class="nav-item">
-          <a href="<%= bairros_path %>" class="nav-link" id="bairros-link" data-no-close>
-            <i class="ph-map-pin"></i>
-            <span>Bairros</span>
-          </a>
-        </li>
-
         <!-- Unidades de Medida -->
         <li class="nav-item">
           <a href="<%= unidades_medida_path %>" class="nav-link" id="unidades-link" data-no-close>
@@ -113,6 +73,54 @@
           </a>
         </li>
 
+        
+        <!-- Submenu: Localidades -->
+        <li class="nav-item nav-item-submenu">
+          <a href="#" class="nav-link">
+            <i class="ph-map-trifold"></i>
+            <span>Localidades</span>
+          </a>
+          <ul class="nav nav-group-sub" data-submenu-title="Localidades">
+
+            <li class="nav-item">
+              <a href="<%= paises_path %>" class="nav-link" id="paises-link" data-no-close>
+                <i class="ph-globe"></i>
+                <span>Países</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<%= estados_path %>" class="nav-link" id="estados-link" data-no-close>
+                <i class="ph-flag"></i>
+                <span>Estados</span>
+              </a>
+            </li>
+            
+
+            <li class="nav-item">
+              <a href="<%= municipios_path %>" class="nav-link" id="municipios-link" data-no-close>
+                <i class="ph-buildings"></i>
+                <span>Municípios</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<%= distritos_path %>" class="nav-link" id="distritos-link" data-no-close>
+                <i class="ph-map-pin-line"></i>
+                <span>Distritos</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="<%= bairros_path %>" class="nav-link" id="bairros-link" data-no-close>
+                <i class="ph-map-pin"></i>
+                <span>Bairros</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+
       </ul>
     </div>
   </div>
@@ -126,12 +134,13 @@
 
     navItems.forEach(item => {
       const text = item.textContent.toLowerCase();
-      const isCollapsible = item.querySelector('.nav-group-sub');
+      const submenu = item.querySelector('.nav-group-sub');
       if (text.includes(filter)) {
         item.style.display = '';
-        if (isCollapsible) isCollapsible.classList.add('show');
+        if (submenu) submenu.classList.add('show'); // abre submenu
       } else {
         item.style.display = 'none';
+        if (submenu) submenu.classList.remove('show'); // fecha submenu
       }
     });
   }
