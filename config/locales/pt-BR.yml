@@ -23,6 +23,9 @@ pt-BR:
       pais:
         one: "País"
         other: "Países"
+      status_empresa:
+        one: "Status da Empresa"
+        other: "Status das Empresas"
       categoria:
         one: "Categoria"
         other: "Categorias"
@@ -46,6 +49,8 @@ pt-BR:
       distrito:
         nome: "Nome"
         municipio_id: "Município"
+      status_empresa:
+        descricao: "Descrição"
       pais:
         nome: "Nome"
         sigla: "Sigla"
