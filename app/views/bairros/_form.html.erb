@@ -1,0 +1,82 @@
+
+<div class="climastock-page">
+  
+  <div class="climastock-page-header">
+    <div class="climastock-header-content">
+      <div class="climastock-header-left">
+        <div class="climastock-icon-wrapper">
+          <i class="ph-<%= @bairro.new_record? ? 'plus-circle' : 'pen' %>"></i>
+        </div>
+        <div class="climastock-header-text">
+          <h1 class="climastock-page-title">
+            <%= @bairro.new_record? ? "Novo" : "Editar" %> 
+            <%= Bairro.model_name.human %>
+          </h1>
+          <p class="climastock-page-subtitle">
+            Preencha os campos abaixo para <%= @bairro.new_record? ? "criar um novo" : "atualizar o" %> registro
+          </p>
+        </div>
+      </div>
+      <div class="climastock-header-right">
+        <%= link_to bairros_path, class: "climastock-btn climastock-btn-secondary" do %>
+        <i class="ph-arrow-left"></i>
+        <span>Voltar</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <%= simple_form_for(@bairro, html: { class: "climastock-form" }) do |f| %>
+  <div class="climastock-form-card">
+    
+    <% if @bairro.errors.any? %>
+    <div class="climastock-alert climastock-alert-danger">
+      <div class="climastock-alert-icon">
+        <i class="ph-warning-circle"></i>
+      </div>
+      <div class="climastock-alert-content">
+        <h4 class="climastock-alert-title">
+          <%= pluralize(@bairro.errors.count, "erro") %> encontrado<%= @bairro.errors.count > 1 ? "s" : "" %>
+        </h4>
+        <ul class="climastock-alert-list">
+          <% @bairro.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <% end %>
+    
+    <div class="climastock-form-body">
+      <div class="climastock-form-grid">
+                  <div class="climastock-form-group">
+            <%= f.input :nome,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+          </div>
+                  <div class="climastock-form-group">
+            <%= f.association :municipio,
+            wrapper_html: { class: "climastock-input-wrapper" },
+            input_html: { class: "climastock-input" },
+            label_html: { class: "climastock-label" } %>
+          </div>
+              </div>
+    </div>
+    
+    <div class="climastock-form-footer">
+      <div class="climastock-form-actions">
+        <%= link_to bairros_path, class: "climastock-btn climastock-btn-outline" do %>
+        <i class="ph-x"></i>
+        <span>Cancelar</span>
+        <% end %>
+        <%= f.button :submit, 
+                class: "climastock-btn climastock-btn-primary" do %>
+          <i class="ph-check-circle"></i>
+          <span><%= @bairro.new_record? ? "Criar Registro" : "Salvar Alterações" %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
