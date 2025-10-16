@@ -43,8 +43,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_123429) do
     t.string "email"
     t.string "telefone"
     t.string "endereco"
-    t.bigint "municipio_id"
-    t.bigint "status_empresa_id"
+    t.bigint "municipio_id", null: false
+    t.bigint "status_empresa_id", null: false
     t.string "created_by"
     t.string "updated_by"
     t.datetime "deleted_at"
@@ -105,5 +105,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_123429) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "empresas", "municipios"
+  add_foreign_key "empresas", "status_empresas"
   add_foreign_key "estados", "paises"
 end

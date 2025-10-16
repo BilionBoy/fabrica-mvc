@@ -26,6 +26,9 @@ pt-BR:
       status_empresa:
         one: "Status da Empresa"
         other: "Status das Empresas"
+      empresa:
+        one: "Empresa"
+        other: "Empresas"
       categoria:
         one: "Categoria"
         other: "Categorias"
@@ -51,6 +54,14 @@ pt-BR:
         municipio_id: "Município"
       status_empresa:
         descricao: "Descrição"
+      empresa:
+        nome_fantasia: "Nome Fantasia"
+        razao_social: "Razão Social"
+        cnpj: "Cnpj"
+        telefone: "Telefone"
+        email: "Email"
+        municipio_id: "Município"
+        status_empresa_id: "Status da Empresa"
       pais:
         nome: "Nome"
         sigla: "Sigla"
@@ -63,6 +74,7 @@ pt-BR:
         preco: "Preço"
         categoria: "Categoria"
         quantidade_estoque: "Quantidade em Estoque"
+
     errors:
       messages:
         record_invalid: "A validação falhou: %{errors}"

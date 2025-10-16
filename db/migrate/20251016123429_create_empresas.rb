@@ -10,8 +10,8 @@ class CreateEmpresas < ActiveRecord::Migration[7.2]
       t.string :email
       t.string :telefone
       t.string :endereco
-      t.references :municipio
-      t.references :status_empresa
+      t.references :municipio, null: false, foreign_key: true
+      t.references :status_empresa, null: false, foreign_key: true
           
       t.string :created_by
       t.string :updated_by
