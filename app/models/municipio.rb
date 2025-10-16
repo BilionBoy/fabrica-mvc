@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Pais < ApplicationRecord
+class Municipio < ApplicationRecord
   # Adicione aqui quaisquer métodos ou validações padrão para seus modelos
-  has_many :estados
+  belongs_to :estado
 end
