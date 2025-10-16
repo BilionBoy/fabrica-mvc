@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categoria_produtos
   resources :tipo_usuarios
   resources :filiais
   root 'home#index'

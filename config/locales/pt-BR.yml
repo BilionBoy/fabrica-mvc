@@ -32,9 +32,10 @@ pt-BR:
       filial:
         one: "Filial"
         other: "Filiais"
-      categoria:
-        one: "Categoria"
-        other: "Categorias"
+      categoria_produto:
+        one: "Categoria do Produto"
+        other: "Categorias dos Produtos"
+
       produto:
         one: "Produto"
         other: "Produtos"
@@ -78,7 +79,8 @@ pt-BR:
       pais:
         nome: "Nome"
         sigla: "Sigla"
-      categoria:
+        ativo: "Status da Categoria"
+      categoria_produto:
         nome: "Nome"
         descricao: "Descrição"
       produto:
