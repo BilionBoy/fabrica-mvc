@@ -1,6 +1,5 @@
-
 <div class="climastock-page">
-  Header do Formulário 
+  <!-- Header do Formulário -->
   <div class="climastock-page-header">
     <div class="climastock-header-content">
       <div class="climastock-header-left">
@@ -9,7 +8,7 @@
         </div>
         <div class="climastock-header-text">
           <h1 class="climastock-page-title">
-            <%= @unidade_medida.new_record? ? "Novo" : "Editar" %> 
+            <%= @unidade_medida.new_record? ? "Novo" : "Editar" %>
             <%= UnidadeMedida.model_name.human %>
           </h1>
           <p class="climastock-page-subtitle">
@@ -19,58 +18,73 @@
       </div>
       <div class="climastock-header-right">
         <%= link_to unidades_medida_path, class: "climastock-btn climastock-btn-secondary" do %>
-        <i class="ph-arrow-left"></i>
-        <span>Voltar</span>
+          <i class="ph-arrow-left"></i>
+          <span>Voltar</span>
         <% end %>
       </div>
     </div>
   </div>
-  Formulário 
+  <!-- Formulário -->
   <%= simple_form_for(@unidade_medida, html: { class: "climastock-form" }) do |f| %>
-  <div class="climastock-form-card">
-    Notificações de Erro 
-    <% if @unidade_medida.errors.any? %>
-    <div class="climastock-alert climastock-alert-danger">
-      <div class="climastock-alert-icon">
-        <i class="ph-warning-circle"></i>
-      </div>
-      <div class="climastock-alert-content">
-        <h4 class="climastock-alert-title">
-          <%= pluralize(@unidade_medida.errors.count, "erro") %> encontrado<%= @unidade_medida.errors.count > 1 ? "s" : "" %>
-        </h4>
-        <ul class="climastock-alert-list">
-          <% @unidade_medida.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-    <% end %>
-    Campos do Formulário 
-    <div class="climastock-form-body">
-      <div class="climastock-form-grid">
-                  <div class="climastock-form-group">
-            <%= f.input :nome,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
+    <div class="climastock-form-card">
+      <!-- Notificações de Erro -->
+      <% if @unidade_medida.errors.any? %>
+        <div class="climastock-alert climastock-alert-danger">
+          <div class="climastock-alert-icon">
+            <i class="ph-warning-circle"></i>
           </div>
-              </div>
-    </div>
-    Rodapé do Formulário 
-    <div class="climastock-form-footer">
-      <div class="climastock-form-actions">
-        <%= link_to unidades_medida_path, class: "climastock-btn climastock-btn-outline" do %>
-        <i class="ph-x"></i>
-        <span>Cancelar</span>
-        <% end %>
-        <%= f.button :submit, 
-              class: "climastock-btn climastock-btn-primary" do %>
-          <i class="ph-check-circle"></i>
-          <span><%= @unidade_medida.new_record? ? "Criar Registro" : "Salvar Alterações" %></span>
+          <div class="climastock-alert-content">
+            <h4 class="climastock-alert-title">
+              <%= pluralize(@unidade_medida.errors.count, "erro") %> encontrado<%= @unidade_medida.errors.count > 1 ? "s" : "" %>
+            </h4>
+            <ul class="climastock-alert-list">
+              <% @unidade_medida.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <!-- Campos do Formulário -->
+      <div class="climastock-form-body">
+        <div class="climastock-form-grid">
+          <!-- Nome -->
+          <div class="climastock-form-group">
+            <%= f.input :nome,
+              wrapper_html: { class: "climastock-input-wrapper" },
+              input_html: { class: "climastock-input" },
+              label_html: { class: "climastock-label" } %>
+          </div>
+          <!-- Sigla -->
+          <div class="climastock-form-group">
+            <%= f.input :sigla,
+              wrapper_html: { class: "climastock-input-wrapper" },
+              input_html: { class: "climastock-input" },
+              label_html: { class: "climastock-label" } %>
+          </div>
+          <!-- Descrição -->
+          <div class="climastock-form-group">
+            <%= f.input :descricao,
+              as: :text,
+              wrapper_html: { class: "climastock-input-wrapper" },
+              input_html: { class: "climastock-input", rows: 4 },
+              label_html: { class: "climastock-label" } %>
+          </div>
+        </div>
+      </div>
+      <!-- Rodapé do Formulário -->
+      <div class="climastock-form-footer">
+        <div class="climastock-form-actions">
+          <%= link_to unidades_medida_path, class: "climastock-btn climastock-btn-outline" do %>
+            <i class="ph-x"></i>
+            <span>Cancelar</span>
+          <% end %>
+          <%= f.button :submit, class: "climastock-btn climastock-btn-primary" do %>
+            <i class="ph-check-circle"></i>
+            <span><%= @unidade_medida.new_record? ? "Criar Registro" : "Salvar Alterações" %></span>
           <% end %>
         </div>
       </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>
