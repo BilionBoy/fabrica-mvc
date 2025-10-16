@@ -43,6 +43,9 @@ pt-BR:
       municipio:
         nome: "Nome"
         estado_id: "Estado"
+      distrito:
+        nome: "Nome"
+        municipio_id: "Município"
       pais:
         nome: "Nome"
         sigla: "Sigla"
