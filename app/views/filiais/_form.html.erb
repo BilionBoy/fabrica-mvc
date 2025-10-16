@@ -1,6 +1,4 @@
-
 <div class="climastock-page">
-  
   <div class="climastock-page-header">
     <div class="climastock-header-content">
       <div class="climastock-header-left">
@@ -9,7 +7,7 @@
         </div>
         <div class="climastock-header-text">
           <h1 class="climastock-page-title">
-            <%= @filial.new_record? ? "Novo" : "Editar" %> 
+            <%= @filial.new_record? ? "Novo" : "Editar" %>
             <%= Filial.model_name.human %>
           </h1>
           <p class="climastock-page-subtitle">
@@ -19,76 +17,60 @@
       </div>
       <div class="climastock-header-right">
         <%= link_to filiais_path, class: "climastock-btn climastock-btn-secondary" do %>
-        <i class="ph-arrow-left"></i>
-        <span>Voltar</span>
+          <i class="ph-arrow-left"></i>
+          <span>Voltar</span>
         <% end %>
       </div>
     </div>
   </div>
-  
   <%= simple_form_for(@filial, html: { class: "climastock-form" }) do |f| %>
-  <div class="climastock-form-card">
-    
-    <% if @filial.errors.any? %>
-    <div class="climastock-alert climastock-alert-danger">
-      <div class="climastock-alert-icon">
-        <i class="ph-warning-circle"></i>
+    <div class="climastock-form-card">
+      <% if @filial.errors.any? %>
+        <div class="climastock-alert climastock-alert-danger">
+          <div class="climastock-alert-icon">
+            <i class="ph-warning-circle"></i>
+          </div>
+          <div class="climastock-alert-content">
+            <h4 class="climastock-alert-title">
+              <%= pluralize(@filial.errors.count, "erro") %> encontrado<%= @filial.errors.count > 1 ? "s" : "" %>
+            </h4>
+            <ul class="climastock-alert-list">
+              <% @filial.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <div class="climastock-form-body">
+        <div class="climastock-form-grid">
+          <div class="climastock-form-group">
+            <%= f.input :nome,  wrapper_html: { class: "climastock-input-wrapper" },  input_html: { class: "climastock-input" },  label_html: { class: "climastock-label" } %>
+          </div>
+          <div class="climastock-form-group">
+            <%= f.input :descricao,  wrapper_html: { class: "climastock-input-wrapper" }, input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
+          </div>
+          <div class="climastock-form-group">
+            <%= f.input :empresa_id,  as: :select,  collection: Empresa.all.map { |p| [p.nome_fantasia, p.id] }, include_blank: "Selecione uma Empresa", wrapper_html: { class: "climastock-input-wrapper" },  input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
+          </div>
+          <div class="climastock-form-group">
+            <%= f.input :municipio_id,  as: :select,  collection: Municipio.all.map { |p| [p.nome, p.id] }, include_blank: "Selecione um Município", wrapper_html: { class: "climastock-input-wrapper" },  input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
+          </div>
+        </div>
       </div>
-      <div class="climastock-alert-content">
-        <h4 class="climastock-alert-title">
-          <%= pluralize(@filial.errors.count, "erro") %> encontrado<%= @filial.errors.count > 1 ? "s" : "" %>
-        </h4>
-        <ul class="climastock-alert-list">
-          <% @filial.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+      <div class="climastock-form-footer">
+        <div class="climastock-form-actions">
+          <%= link_to filiais_path, class: "climastock-btn climastock-btn-outline" do %>
+            <i class="ph-x"></i>
+            <span>Cancelar</span>
           <% end %>
-        </ul>
-      </div>
-    </div>
-    <% end %>
-    
-    <div class="climastock-form-body">
-      <div class="climastock-form-grid">
-                  <div class="climastock-form-group">
-            <%= f.input :nome,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.input :descricao,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.association :empresa,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-                  <div class="climastock-form-group">
-            <%= f.association :municipio,
-            wrapper_html: { class: "climastock-input-wrapper" },
-            input_html: { class: "climastock-input" },
-            label_html: { class: "climastock-label" } %>
-          </div>
-              </div>
-    </div>
-    
-    <div class="climastock-form-footer">
-      <div class="climastock-form-actions">
-        <%= link_to filiais_path, class: "climastock-btn climastock-btn-outline" do %>
-        <i class="ph-x"></i>
-        <span>Cancelar</span>
-        <% end %>
-        <%= f.button :submit, 
+          <%= f.button :submit, 
                 class: "climastock-btn climastock-btn-primary" do %>
-          <i class="ph-check-circle"></i>
-          <span><%= @filial.new_record? ? "Criar Registro" : "Salvar Alterações" %></span>
+            <i class="ph-check-circle"></i>
+            <span><%= @filial.new_record? ? "Criar Registro" : "Salvar Alterações" %></span>
           <% end %>
         </div>
       </div>
     </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>

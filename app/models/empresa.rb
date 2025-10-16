@@ -4,4 +4,5 @@ class Empresa < ApplicationRecord
   # Adicione aqui quaisquer métodos ou validações padrão para seus modelos
   belongs_to :status_empresa
   belongs_to :municipio
+  has_many   :filiais
 end

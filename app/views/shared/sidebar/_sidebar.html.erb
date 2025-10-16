@@ -65,6 +65,14 @@
           </a>
         </li>
 
+        <!-- Filiais -->
+        <li class="nav-item">
+          <a href="<%= filiais_path %>" class="nav-link" id="filiais-link" data-no-close>
+            <i class="ph-building"></i>
+            <span>Filiais</span>
+          </a>
+        </li>
+
         <!-- Status de Empresas -->
         <li class="nav-item">
           <a href="<%= status_empresas_path %>" class="nav-link" id="status-empresas-link" data-no-close>
@@ -73,7 +81,6 @@
           </a>
         </li>
 
-        
         <!-- Submenu: Localidades -->
         <li class="nav-item nav-item-submenu">
           <a href="#" class="nav-link">
@@ -94,32 +101,26 @@
                 <span>Estados</span>
               </a>
             </li>
-            
-
             <li class="nav-item">
               <a href="<%= municipios_path %>" class="nav-link" id="municipios-link" data-no-close>
                 <i class="ph-buildings"></i>
                 <span>Municípios</span>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="<%= distritos_path %>" class="nav-link" id="distritos-link" data-no-close>
                 <i class="ph-map-pin-line"></i>
                 <span>Distritos</span>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="<%= bairros_path %>" class="nav-link" id="bairros-link" data-no-close>
                 <i class="ph-map-pin"></i>
                 <span>Bairros</span>
               </a>
             </li>
-
           </ul>
         </li>
-
 
       </ul>
     </div>
@@ -137,10 +138,10 @@
       const submenu = item.querySelector('.nav-group-sub');
       if (text.includes(filter)) {
         item.style.display = '';
-        if (submenu) submenu.classList.add('show'); // abre submenu
+        if (submenu) submenu.classList.add('show');
       } else {
         item.style.display = 'none';
-        if (submenu) submenu.classList.remove('show'); // fecha submenu
+        if (submenu) submenu.classList.remove('show');
       }
     });
   }
