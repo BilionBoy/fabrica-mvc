@@ -14,6 +14,9 @@ pt-BR:
       estado:
         one: "Estado"
         other: "Estados"
+      municipio:
+        one: "Município"
+        other: "Municípios"
       pais:
         one: "País"
         other: "Países"
@@ -31,6 +34,9 @@ pt-BR:
         nome: "Nome"
         sigla: "Sigla"
         pais_id: "País"
+      municipio:
+        nome: "Nome"
+        estado_id: "Estado"
       pais:
         nome: "Nome"
         sigla: "Sigla"
