@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_16_123429) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_16_132552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_123429) do
     t.index ["pais_id"], name: "index_estados_on_pais_id"
   end
 
+  create_table "filiais", force: :cascade do |t|
+    t.string "nome"
+    t.string "descricao"
+    t.bigint "empresa_id", null: false
+    t.bigint "municipio_id", null: false
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_filiais_on_empresa_id"
+    t.index ["municipio_id"], name: "index_filiais_on_municipio_id"
+  end
+
   create_table "municipios", force: :cascade do |t|
     t.string "nome"
     t.bigint "estado_id"
@@ -108,4 +122,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_123429) do
   add_foreign_key "empresas", "municipios"
   add_foreign_key "empresas", "status_empresas"
   add_foreign_key "estados", "paises"
+  add_foreign_key "filiais", "empresas"
+  add_foreign_key "filiais", "municipios"
 end
