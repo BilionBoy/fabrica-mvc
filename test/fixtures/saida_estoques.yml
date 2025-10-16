@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  empresa: 1
+  produto: 1
+  quantidade: 1
+  data_saida: 2025-10-16
+  observacao: MyText
+  created_by: 1
+  created_at: 2025-10-16 17:25:52
+
+two:
+  empresa: 1
+  produto: 1
+  quantidade: 1
+  data_saida: 2025-10-16
+  observacao: MyText
+  created_by: 1
+  created_at: 2025-10-16 17:25:52

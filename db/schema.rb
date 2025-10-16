@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_16_211759) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -152,6 +152,21 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_211759) do
     t.index ["unidade_medida_id"], name: "index_produtos_on_unidade_medida_id"
   end
 
+  create_table "saida_estoques", force: :cascade do |t|
+    t.bigint "empresa_id"
+    t.bigint "produto_id"
+    t.integer "quantidade", null: false
+    t.date "data_saida", null: false
+    t.text "observacao"
+    t.integer "created_by"
+    t.integer "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["empresa_id"], name: "index_saida_estoques_on_empresa_id"
+    t.index ["produto_id"], name: "index_saida_estoques_on_produto_id"
+  end
+
   create_table "status_empresas", force: :cascade do |t|
     t.string "descricao"
     t.string "created_by"
@@ -195,4 +210,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_211759) do
   add_foreign_key "produtos", "categoria_produtos"
   add_foreign_key "produtos", "empresas"
   add_foreign_key "produtos", "unidades_medida"
+  add_foreign_key "saida_estoques", "empresas"
+  add_foreign_key "saida_estoques", "produtos"
 end
