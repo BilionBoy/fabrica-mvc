@@ -1,6 +1,11 @@
-<%# Template de formulário moderno para ClimaStock %>
+<%# ========================================
+    CLIMASTOCK FORM TEMPLATE V3.0
+    Formulário Ultra Moderno com Validação Visual
+    ======================================== %>
 <div class="climastock-page">
-  Header do Formulário 
+  <%# ========================================
+      HEADER DO FORMULÁRIO COM ÍCONE DINÂMICO
+      ======================================== %>
   <div class="climastock-page-header">
     <div class="climastock-header-content">
       <div class="climastock-header-left">
@@ -25,10 +30,14 @@
       </div>
     </div>
   </div>
-  Formulário 
+  <%# ========================================
+      FORMULÁRIO COM CARD GLASSMORPHISM
+      ======================================== %>
   <%%= simple_form_for(@<%= singular_table_name %>, html: { class: "climastock-form" }) do |f| %>
   <div class="climastock-form-card">
-    Notificações de Erro 
+    <%# ========================================
+          ALERTAS DE ERRO COM DESIGN MODERNO
+          ======================================== %>
     <%% if @<%= singular_table_name %>.errors.any? %>
     <div class="climastock-alert climastock-alert-danger">
       <div class="climastock-alert-icon">
@@ -46,7 +55,9 @@
       </div>
     </div>
     <%% end %>
-    Campos do Formulário 
+    <%# ========================================
+          CAMPOS DO FORMULÁRIO EM GRID RESPONSIVO
+          ======================================== %>
     <div class="climastock-form-body">
       <div class="climastock-form-grid">
         <% attributes.reject { |attr| attr.name.in?(%w[deleted_at original_user_create last_user_update created_by updated_by]) }.each do |attribute| -%>
@@ -59,7 +70,9 @@
         <% end -%>
       </div>
     </div>
-    Rodapé do Formulário 
+    <%# ========================================
+          RODAPÉ COM BOTÕES DE AÇÃO
+          ======================================== %>
     <div class="climastock-form-footer">
       <div class="climastock-form-actions">
         <%%= link_to <%= index_helper %>_path, class: "climastock-btn climastock-btn-outline" do %>
@@ -67,7 +80,7 @@
         <span>Cancelar</span>
         <%% end %>
         <%%= f.button :submit, 
-              class: "climastock-btn climastock-btn-primary" do %>
+                class: "climastock-btn climastock-btn-primary" do %>
           <i class="ph-check-circle"></i>
           <span><%%= @<%= singular_table_name %>.new_record? ? "Criar Registro" : "Salvar Alterações" %></span>
           <%% end %>

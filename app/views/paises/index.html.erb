@@ -1,6 +1,6 @@
 
 <div class="climastock-page">
-  <!-- Header da Página -->
+  
   <div class="climastock-page-header">
     <div class="climastock-header-content">
       <div class="climastock-header-left">
@@ -9,20 +9,20 @@
         </div>
         <div class="climastock-header-text">
           <h1 class="climastock-page-title">
-            <%= t("activerecord.models.#{Categoria.model_name.i18n_key}.other") %>
+            <%= t("activerecord.models.#{Pais.model_name.i18n_key}.other") %>
           </h1>
-          <p class="climastock-page-subtitle">Gerencie seus registros de forma eficiente</p>
+          <p class="climastock-page-subtitle">Gerencie seus registros de forma eficiente e moderna</p>
         </div>
       </div>
       <div class="climastock-header-right">
-        <%= link_to new_categoria_path, class: "climastock-btn climastock-btn-primary" do %>
+        <%= link_to new_pais_path, class: "climastock-btn climastock-btn-primary" do %>
         <i class="ph-plus-circle"></i>
         <span>Novo Registro</span>
         <% end %>
       </div>
     </div>
   </div>
-  <!-- Barra de Busca -->
+  
   <div class="climastock-search-section">
     <%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
       <div class="climastock-search-wrapper">
@@ -34,7 +34,7 @@
           <span>Buscar</span>
           <% end %>
           <% if params[:q] %>
-          <%= link_to categorias_path, class: "climastock-clear-btn" do %>
+          <%= link_to paises_path, class: "climastock-clear-btn" do %>
           <i class="ph-x-circle"></i>
           <span>Limpar</span>
           <% end %>
@@ -42,10 +42,11 @@
         </div>
         <% end %>
       </div>
-      <!-- Grid de Cards -->
+      
       <div class="climastock-cards-grid">
-        <% @categorias.each do |categoria| %>
+        <% @paises.each do |pais| %>
         <div class="climastock-card">
+          
           <div class="climastock-card-header">
             <div class="climastock-card-badge">
               <i class="ph-cube"></i>
@@ -56,13 +57,13 @@
                   <i class="ph-dots-three-vertical"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end climastock-dropdown-menu">
-                  <%= link_to edit_categoria_path(categoria), class: "climastock-dropdown-item" do %>
+                  <%= link_to edit_pais_path(pais), class: "climastock-dropdown-item" do %>
                   <i class="ph-pen"></i>
                   <span>Editar</span>
                   <% end %>
-                  <%= form_for categoria, method: :delete do |f| %>
+                  <%= form_for pais, method: :delete do |f| %>
                   <a class="climastock-dropdown-item climastock-dropdown-item-danger" 
-                     data-confirm-delete="<%= categoria_path(categoria) %>" 
+                     data-confirm-delete="<%= pais_path(pais) %>" 
                     data-csrf-token="<%= form_authenticity_token %>">
                     <i class="ph-trash"></i>
                     <span>Excluir</span>
@@ -72,27 +73,29 @@
               </div>
             </div>
           </div>
+          
           <div class="climastock-card-body">
             
               <div class="climastock-card-field">
                 <span class="climastock-field-label">
-                  <%= t("activerecord.attributes.categoria.nome") %>
+                  <%= t("activerecord.attributes.pais.nome") %>
                 </span>
                 <span class="climastock-field-value">
-                  <%= categoria.nome %>
+                  <%= pais.nome %>
                 </span>
               </div>
               <div class="climastock-card-field">
                 <span class="climastock-field-label">
-                  <%= t("activerecord.attributes.categoria.descricao") %>
+                  <%= t("activerecord.attributes.pais.sigla") %>
                 </span>
                 <span class="climastock-field-value">
-                  <%= categoria.descricao %>
+                  <%= pais.sigla %>
                 </span>
               </div>
           </div>
+          
           <div class="climastock-card-footer">
-            <%= link_to categoria_path(categoria), class: "climastock-card-link" do %>
+            <%= link_to pais_path(pais), class: "climastock-card-link" do %>
             <span>Ver detalhes</span>
             <i class="ph-arrow-right"></i>
             <% end %>
@@ -100,7 +103,7 @@
         </div>
         <% end %>
       </div>
-      <!-- Paginação -->
+      
       <div class="climastock-pagination">
         <%= pagy_bootstrap_nav(@pagy, link_extra: 'class="climastock-page-link"').html_safe %>
       </div>

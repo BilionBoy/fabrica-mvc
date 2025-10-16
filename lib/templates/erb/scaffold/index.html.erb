@@ -1,6 +1,11 @@
-<%# Criando template de index completamente novo com design moderno %>
+<%# ========================================
+    CLIMASTOCK INDEX TEMPLATE V3.0
+    Template Ultra Moderno com Design System Avançado
+    ======================================== %>
 <div class="climastock-page">
-  <!-- Header da Página -->
+  <%# ========================================
+      HEADER DA PÁGINA COM GRADIENTE E ANIMAÇÕES
+      ======================================== %>
   <div class="climastock-page-header">
     <div class="climastock-header-content">
       <div class="climastock-header-left">
@@ -11,7 +16,7 @@
           <h1 class="climastock-page-title">
             <%%= t("activerecord.models.#{<%= class_name %>.model_name.i18n_key}.other") %>
           </h1>
-          <p class="climastock-page-subtitle">Gerencie seus registros de forma eficiente</p>
+          <p class="climastock-page-subtitle">Gerencie seus registros de forma eficiente e moderna</p>
         </div>
       </div>
       <div class="climastock-header-right">
@@ -22,7 +27,9 @@
       </div>
     </div>
   </div>
-  <!-- Barra de Busca -->
+  <%# ========================================
+      BARRA DE BUSCA AVANÇADA COM GLASSMORPHISM
+      ======================================== %>
   <div class="climastock-search-section">
     <%%= search_form_for @q, html: { class: "climastock-search-form", autocomplete: "off" } do |f| %>
       <div class="climastock-search-wrapper">
@@ -42,10 +49,13 @@
         </div>
         <%% end %>
       </div>
-      <!-- Grid de Cards -->
+      <%# ========================================
+      GRID DE CARDS COM EFEITOS 3D E HOVER
+      ======================================== %>
       <div class="climastock-cards-grid">
         <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
         <div class="climastock-card">
+          <%# Header do Card com Badge Gradiente %>
           <div class="climastock-card-header">
             <div class="climastock-card-badge">
               <i class="ph-cube"></i>
@@ -72,6 +82,7 @@
               </div>
             </div>
           </div>
+          <%# Body do Card com Campos Estilizados %>
           <div class="climastock-card-body">
             <% attributes_to_ignore = ['deleted_at', 'original_user_create', 'last_user_update', 'created_by', 'updated_by'] %>
             <%- attributes.reject { |attr| attributes_to_ignore.include?(attr.name) }.first(4).each do |attribute| -%>
@@ -85,6 +96,7 @@
               </div>
             <%- end -%>
           </div>
+          <%# Footer do Card com Link Animado %>
           <div class="climastock-card-footer">
             <%%= link_to <%= singular_table_name %>_path(<%= singular_table_name %>), class: "climastock-card-link" do %>
             <span>Ver detalhes</span>
@@ -94,7 +106,9 @@
         </div>
         <%% end %>
       </div>
-      <!-- Paginação -->
+      <%# ========================================
+      PAGINAÇÃO MODERNA
+      ======================================== %>
       <div class="climastock-pagination">
         <%%= pagy_bootstrap_nav(@pagy, link_extra: 'class="climastock-page-link"').html_safe %>
       </div>

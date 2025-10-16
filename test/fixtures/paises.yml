@@ -2,10 +2,8 @@
 
 one:
   nome: MyString
-  descricao: MyString
-  categoria: one
+  sigla: MyString
 
 two:
   nome: MyString
-  descricao: MyString
-  categoria: two
+  sigla: MyString
