@@ -17,7 +17,7 @@ class ProdutosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create produto" do
     assert_difference("Produto.count") do
-      post produtos_url, params: { produto: { ativo: @produto.ativo, categoria_produto_id: @produto.categoria_produto_id, codigo_barras: @produto.codigo_barras, codigo_interno: @produto.codigo_interno, created_by: @produto.created_by, descricao: @produto.descricao, empresa_id: @produto.empresa_id, estoque_minimo: @produto.estoque_minimo, nome: @produto.nome, preco_custo: @produto.preco_custo, preco_venda: @produto.preco_venda, unidade_medida_id: @produto.unidade_medida_id, updated_by: @produto.updated_by } }
+      post produtos_url, params: { produto: { descricao: @produto.descricao, valor: @produto.valor } }
     end
 
     assert_redirected_to produto_url(Produto.last)
@@ -34,7 +34,7 @@ class ProdutosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update produto" do
-    patch produto_url(@produto), params: { produto: { ativo: @produto.ativo, categoria_produto_id: @produto.categoria_produto_id, codigo_barras: @produto.codigo_barras, codigo_interno: @produto.codigo_interno, created_by: @produto.created_by, descricao: @produto.descricao, empresa_id: @produto.empresa_id, estoque_minimo: @produto.estoque_minimo, nome: @produto.nome, preco_custo: @produto.preco_custo, preco_venda: @produto.preco_venda, unidade_medida_id: @produto.unidade_medida_id, updated_by: @produto.updated_by } }
+    patch produto_url(@produto), params: { produto: { descricao: @produto.descricao, valor: @produto.valor } }
     assert_redirected_to produto_url(@produto)
   end
 

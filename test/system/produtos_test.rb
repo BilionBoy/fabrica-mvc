@@ -14,19 +14,8 @@ class ProdutosTest < ApplicationSystemTestCase
     visit produtos_url
     click_on "New produto"
 
-    check "Ativo" if @produto.ativo
-    fill_in "Categoria produto", with: @produto.categoria_produto_id
-    fill_in "Codigo barras", with: @produto.codigo_barras
-    fill_in "Codigo interno", with: @produto.codigo_interno
-    fill_in "Created by", with: @produto.created_by
     fill_in "Descricao", with: @produto.descricao
-    fill_in "Empresa", with: @produto.empresa_id
-    fill_in "Estoque minimo", with: @produto.estoque_minimo
-    fill_in "Nome", with: @produto.nome
-    fill_in "Preco custo", with: @produto.preco_custo
-    fill_in "Preco venda", with: @produto.preco_venda
-    fill_in "Unidade medida", with: @produto.unidade_medida_id
-    fill_in "Updated by", with: @produto.updated_by
+    fill_in "Valor", with: @produto.valor
     click_on "Create Produto"
 
     assert_text "Produto was successfully created"
@@ -37,19 +26,8 @@ class ProdutosTest < ApplicationSystemTestCase
     visit produto_url(@produto)
     click_on "Edit this produto", match: :first
 
-    check "Ativo" if @produto.ativo
-    fill_in "Categoria produto", with: @produto.categoria_produto_id
-    fill_in "Codigo barras", with: @produto.codigo_barras
-    fill_in "Codigo interno", with: @produto.codigo_interno
-    fill_in "Created by", with: @produto.created_by
     fill_in "Descricao", with: @produto.descricao
-    fill_in "Empresa", with: @produto.empresa_id
-    fill_in "Estoque minimo", with: @produto.estoque_minimo
-    fill_in "Nome", with: @produto.nome
-    fill_in "Preco custo", with: @produto.preco_custo
-    fill_in "Preco venda", with: @produto.preco_venda
-    fill_in "Unidade medida", with: @produto.unidade_medida_id
-    fill_in "Updated by", with: @produto.updated_by
+    fill_in "Valor", with: @produto.valor
     click_on "Update Produto"
 
     assert_text "Produto was successfully updated"

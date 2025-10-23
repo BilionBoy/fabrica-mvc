@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  marca: MyString
+  modelo: MyString
+  num_serie: MyString
+  capacidade: MyString
+  complemento: MyString
+
+two:
+  cliente: two
+  marca: MyString
+  modelo: MyString
+  num_serie: MyString
+  capacidade: MyString
+  complemento: MyString

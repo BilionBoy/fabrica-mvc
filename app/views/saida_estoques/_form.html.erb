@@ -45,9 +45,6 @@
       <div class="climastock-form-body">
         <div class="climastock-form-grid">
           <div class="climastock-form-group">
-            <%= f.input :empresa_id, collection: Empresa.all.pluck(:nome, :id), prompt: "Selecione a Empresa", wrapper_html: { class: "climastock-input-wrapper" }, input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
-          </div>
-          <div class="climastock-form-group">
             <%= f.input :produto_id, collection: Produto.all.pluck(:nome, :id), prompt: "Selecione o Produto", wrapper_html: { class: "climastock-input-wrapper" }, input_html: { class: "climastock-input" }, label_html: { class: "climastock-label" } %>
           </div>
           <div class="climastock-form-group">

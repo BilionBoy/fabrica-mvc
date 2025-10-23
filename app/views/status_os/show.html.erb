@@ -1,0 +1,25 @@
+<div class="container">
+  <%= render "shared/notice" %>
+  <div class="card border-0 shadow shadow-sm">
+    <div class="card-header border-0 d-flex justify-content-between">
+      <span class="fs-4">Visualizar Status O</span>
+    </div>
+    <div class="card-body">
+      <div id="<%= dom_id @status_o %>">
+          <p>
+            <strong>Descricao:</strong>
+            <%= @status_o.descricao %>
+          </p>
+      </div>
+    </div>
+    <div class="card-footer border-0 d-flex justify-content-between">
+      <div>
+        <%= link_to edit_status_o_path(@status_o), class: "btn btn-primary" do %>
+        <i class="bi bi-pencil-square"></i> Editar
+        <% end %>
+        <%= link_to "Voltar", status_os_path, class: "btn btn-secondary" %>
+      </div>
+      <%= button_to "Deletar", @status_o, method: :delete, class: "btn btn-outline-danger border-0" %>
+    </div>
+  </div>
+</div>
