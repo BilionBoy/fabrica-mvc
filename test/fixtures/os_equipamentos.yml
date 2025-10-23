@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  equipamento: one
+  ordem_servico: one
+  laudo: MyString
+
+two:
+  equipamento: two
+  ordem_servico: two
+  laudo: MyString

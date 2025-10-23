@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-class Endereco < ApplicationRecord
+class Tecnico < ApplicationRecord
   # Adicione aqui quaisquer métodos ou validações padrão para seus modelos
-  belongs_to :cliente
+
+
+  has_many :os_tecnico
+  has_many :ordem_servicos, through: :os_tecnico
 end
