@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
+  root 'kanban#index'
+  get 'home/index'
+
   resources :saida_estoques
   resources :entradas_estoque
   resources :produtos
   resources :categoria_produtos
   resources :tipo_usuarios
   resources :filiais
-  resources :clientes
-  root 'home#index'
-  get 'home/index'
+  resources :clientes do 
+    get :search, on: :collection
+  end
+  resources :ordem_servicos
   
   # Rotas Scaffold
   resources :distritos
@@ -19,6 +23,6 @@ Rails.application.routes.draw do
   resources :status_empresas
   resources :empresas
 
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get 'up' => 'rails/health#show', as: :rails_health_check
+  resources :tasks, only: [:new, :create, :update]
+  resources :columns, only: [:index]
 end

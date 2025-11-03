@@ -1,0 +1,297 @@
+<div class="kanban-wrapper">
+  <main class="kanban-main">
+    <!-- Header -->
+    <div class="kanban-header">
+      <h1 class="kanban-title">Quadro Kanban</h1>
+      <p class="kanban-subtitle">Organize seus steps de forma eficiente</p>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="kanban-board">
+      <% @columns.each do |column| %>
+        <div class="kanban-column" data-column-id="<%= column.id %>">
+          <!-- Column Header -->
+          <div class="kanban-column-header">
+            <h2 class="kanban-column-title"><%= column.title %></h2>
+            <span class="kanban-column-count" data-count="<%= column.tasks.count %>">
+              <%= pluralize(column.tasks.count, 'item') %>
+            </span>
+          </div>
+
+          <!-- Tasks Container -->
+          <div 
+            class="kanban-tasks"
+            data-column-id="<%= column.id %>"
+            ondragover="handleDragOver(event)"
+            ondrop="handleDrop(event, this)"
+            ondragleave="handleDragLeave(event)"
+          >
+            <!-- Render tasks inside the container for drag & drop -->
+            <% column.tasks.each do |task| %>
+              <%= render 'task', task: task %>
+            <% end %>
+
+            <!-- Add Card Button -->
+            <button 
+              class="kanban-add-task"
+              onclick="showAddTaskForm(<%= column.id %>)"
+            >
+              + Adicionar <%= column.title == 'Agendados' ? 'Step' : 'Tarefa' %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </main>
+</div>
+
+<!-- Hidden form for adding tasks -->
+<div id="modal-add-task" class="modal" >
+  <div class="modal-content modal-form-content">
+    <span class="modal-close" onclick="closeAddTaskForm()">&times;</span>
+    <h3>Nova Ordem de Serviço</h3>
+    <form id="task-form" class="modal-form">
+      <!-- Reorganized form fields into 2-column grid for modal, reduced padding -->
+      <div class="modal-form-grid">
+        <div class="form-group">
+          <label for="task-cliente">Cliente</label>
+           <input 
+              type="text" 
+              id="task-cliente" 
+              name="cliente" 
+              placeholder="Digite o nome..." 
+              oninput="buscarCliente(this.value)" 
+              autocomplete="off"
+            >
+              <div id="suggestions" class="suggestions-list"></div>
+
+        </div>
+
+        <div class="form-group">
+          <label for="task-prioridade">Prioridade</label>
+          <select id="task-prioridade" name="prioridade" required>
+            <option value="">Selecione...</option>
+            <option value="baixa">Baixa</option>
+            <option value="media">Média</option>
+            <option value="alta">Alta</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-form-grid">
+        <div class="form-group">
+          <label for="task-data-agendamento">Data Agendamento</label>
+          <input type="date" id="task-data-agendamento" name="data_agendamento" required>
+        </div>
+       
+      </div>
+
+      <div class="form-group">
+        <label for="task-valor">Valor Total</label>
+        <input type="number" id="task-valor" name="valor_total" step="0.01" placeholder="0.00" required>
+      </div>
+
+      <div class="form-group">
+        <label for="task-observacao">Observação</label>
+        <textarea id="task-observacao" name="observacao" placeholder="Digite suas observações..." rows="2"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Salvar Ordem</button>
+        <button type="button" class="btn-cancel" onclick="closeAddTaskForm()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  let draggedElement = null;
+  let sourceColumn = null;
+
+  function handleDragStart(event) {
+    draggedElement = this.closest('[data-task-id]');
+    sourceColumn = this.closest('[data-column-id]');
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/html', this.innerHTML);
+    this.style.opacity = '0.5';
+  }
+
+  function handleDragEnd(event) {
+    if (draggedElement) {
+      draggedElement.style.opacity = '1';
+    }
+  }
+
+  function handleDragOver(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+    const container = event.target.closest('[data-column-id]');
+    if (container) {
+      container.classList.add('drag-over');
+    }
+  }
+
+  function handleDragLeave(event) {
+    const container = event.target.closest('[data-column-id]');
+    if (container) {
+      container.classList.remove('drag-over');
+    }
+  }
+
+  function handleDrop(event, element) {
+    event.preventDefault();
+    const container = element.closest('[data-column-id]');
+    
+    if (container && draggedElement && draggedElement !== element) {
+      const taskId = draggedElement.dataset.taskId;
+      const targetColumnId = container.dataset.columnId;
+      const sourceColumnId = sourceColumn ? sourceColumn.dataset.columnId : null;
+
+      // Update task's column via AJAX
+      fetch(`/tasks/${taskId}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ task: { column_id: targetColumnId } })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Move element in DOM
+          container.querySelector('.kanban-tasks').insertBefore(
+            draggedElement,
+            container.querySelector('.kanban-add-task')
+          );
+          
+          // Update counts
+          updateColumnCounts(sourceColumnId, targetColumnId);
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    }
+
+    if (container) {
+      container.classList.remove('drag-over');
+    }
+    
+    draggedElement = null;
+    sourceColumn = null;
+  }
+
+  function updateColumnCounts(sourceId, targetId) {
+    if (sourceId) {
+      const sourceContainer = document.querySelector(`[data-column-id="${sourceId}"]`);
+      const sourceCount = sourceContainer.querySelectorAll('[data-task-id]').length;
+      sourceContainer.querySelector('[data-count]').textContent = `${sourceCount} item${sourceCount !== 1 ? 's' : ''}`;
+    }
+
+    const targetContainer = document.querySelector(`[data-column-id="${targetId}"]`);
+    const targetCount = targetContainer.querySelectorAll('[data-task-id]').length;
+    targetContainer.querySelector('[data-count]').textContent = `${targetCount} item${targetCount !== 1 ? 's' : ''}`;
+  }
+
+  function showAddTaskForm(columnId) {
+    const modal = document.getElementById('modal-add-task');
+    const form = document.getElementById('task-form');
+    
+    modal.dataset.columnId = columnId;
+    modal.style.display = 'block';
+    document.getElementById('task-cliente').focus();
+  }
+
+  function closeAddTaskForm() {
+    document.getElementById('modal-add-task').style.display = 'none';
+    document.getElementById('task-form').reset();
+  }
+
+  // Handle form submission
+  document.getElementById('task-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const columnId = document.getElementById('modal-add-task').dataset.columnId;
+    const cliente = document.getElementById('task-cliente').value;
+    const prioridade = document.getElementById('task-prioridade').value;
+    const data_agendamento = document.getElementById('task-data-agendamento').value;
+    const data_fechamento = document.getElementById('task-data-fechamento').value;
+    const valor_total = document.getElementById('task-valor').value;
+    const observacao = document.getElementById('task-observacao').value;
+
+    fetch('/tasks', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+      },
+      body: JSON.stringify({
+        task: { 
+          cliente: cliente,
+          prioridade: prioridade,
+          data_agendamento: data_agendamento,
+          data_fechamento: data_fechamento,
+          valor_total: valor_total,
+          observacao: observacao,
+          column_id: columnId
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        // Add new task to the column
+        const container = document.querySelector(`[data-column-id="${columnId}"] .kanban-tasks`);
+        const newTask = document.createElement('div');
+        newTask.innerHTML = data.html;
+        container.insertBefore(newTask.firstChild, container.querySelector('.kanban-add-task'));
+        
+        // Update count
+        const count = container.querySelectorAll('[data-task-id]').length;
+        document.querySelector(`[data-column-id="${columnId}"] [data-count]`).textContent = `${count} item${count !== 1 ? 's' : ''}`;
+        
+        closeAddTaskForm();
+      }
+    })
+    .catch(error => console.error('Error:', error));
+  });
+
+  // Close modal when clicking outside
+  window.addEventListener('click', function(event) {
+    const modal = document.getElementById('modal-add-task');
+    if (event.target === modal) {
+      closeAddTaskForm();
+    }
+  });
+
+  // Setup drag event listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-task-id]').forEach(task => {
+      task.addEventListener('dragstart', handleDragStart);
+      task.addEventListener('dragend', handleDragEnd);
+    });
+  });
+</script>
+<script>
+async function buscarCliente(valor) {
+  const lista = document.getElementById("suggestions");
+  lista.innerHTML = "";
+
+  if (valor.length < 2) return; // só busca a partir de 2 letras
+
+  const response = await fetch(`/clientes/search?q=${encodeURIComponent(valor)}`);
+  const clientes = await response.json();
+
+  clientes.forEach(nome => {
+    const item = document.createElement("div");
+    item.textContent = nome;
+    item.classList.add("suggestion-item");
+    item.onclick = () => selecionarCliente(nome);
+    lista.appendChild(item);
+  });
+}
+
+function selecionarCliente(nome) {
+  document.getElementById("task-cliente").value = nome;
+  document.getElementById("suggestions").innerHTML = "";
+}
+</script>

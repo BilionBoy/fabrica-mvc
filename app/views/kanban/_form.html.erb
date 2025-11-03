@@ -17,12 +17,6 @@
           </p>
         </div>
       </div>
-      <div class="climastock-header-right">
-        <%= link_to ordem_servicos_path, class: "climastock-btn climastock-btn-secondary" do %>
-        <i class="ph-arrow-left"></i>
-        <span>Voltar</span>
-        <% end %>
-      </div>
     </div>
   </div>
   
@@ -55,6 +49,7 @@
             input_html: { class: "climastock-input" },
             label_html: { class: "climastock-label" } %>
           </div>
+         
                   <div class="climastock-form-group">
             <%= f.input :data_agendamento,
             wrapper_html: { class: "climastock-input-wrapper" },
@@ -90,10 +85,6 @@
     
     <div class="climastock-form-footer">
       <div class="climastock-form-actions">
-        <%= link_to ordem_servicos_path, class: "climastock-btn climastock-btn-outline" do %>
-        <i class="ph-x"></i>
-        <span>Cancelar</span>
-        <% end %>
         <%= f.button :submit, 
                 class: "climastock-btn climastock-btn-primary" do %>
           <i class="ph-check-circle"></i>

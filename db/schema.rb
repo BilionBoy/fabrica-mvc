@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_23_191104) do
+ActiveRecord::Schema[7.2].define(version: 2025_11_03_135012) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_23_191104) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "columns", force: :cascade do |t|
+    t.string "title"
+    t.bigint "task_id"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "position", default: 0
+    t.index ["task_id"], name: "index_columns_on_task_id"
   end
 
   create_table "distritos", force: :cascade do |t|
@@ -293,6 +305,19 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_23_191104) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.bigint "column_id"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+    t.integer "status"
+    t.index ["column_id"], name: "index_tasks_on_column_id"
   end
 
   create_table "tecnicos", force: :cascade do |t|

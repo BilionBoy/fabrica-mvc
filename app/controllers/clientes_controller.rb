@@ -44,6 +44,12 @@ class ClientesController < ApplicationController
     end   
   end
 
+  def search
+    query = params[:q].to_s.strip
+    @clientes = Cliente.where("nome ILIKE ?", "%#{query}%").limit(10)
+
+    render json: @clientes.pluck(:nome)
+  end
   private
 
   def set_cliente

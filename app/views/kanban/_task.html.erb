@@ -1,0 +1,13 @@
+<div 
+  class="kanban-task"
+  data-task-id="<%= task.id %>"
+  draggable="true"
+  ondragstart="handleDragStart.call(this, event)"
+  ondragend="handleDragEnd.call(this, event)"
+>
+  <h3 class="kanban-task-title"><%= task.title %></h3>
+  <p class="kanban-task-description"><%= task.description %></p>
+  <div class="kanban-task-meta">
+    <span class="kanban-task-status"><%= task.status.humanize if task.status.present? %></span>
+  </div>
+</div>
