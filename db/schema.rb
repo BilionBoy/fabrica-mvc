@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
+ActiveRecord::Schema[7.2].define(version: 2025_10_23_191104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["empresa_id"], name: "index_categoria_produtos_on_empresa_id"
+  end
+
+  create_table "clientes", force: :cascade do |t|
+    t.string "nome"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "distritos", force: :cascade do |t|
@@ -67,6 +76,20 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
     t.index ["status_empresa_id"], name: "index_empresas_on_status_empresa_id"
   end
 
+  create_table "enderecos", force: :cascade do |t|
+    t.string "cep"
+    t.string "logradouro"
+    t.string "cidade"
+    t.string "complemento"
+    t.bigint "cliente_id"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_enderecos_on_cliente_id"
+  end
+
   create_table "entradas_estoque", force: :cascade do |t|
     t.bigint "empresa_id", null: false
     t.bigint "produto_id", null: false
@@ -81,6 +104,21 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
     t.datetime "updated_at", null: false
     t.index ["empresa_id"], name: "index_entradas_estoque_on_empresa_id"
     t.index ["produto_id"], name: "index_entradas_estoque_on_produto_id"
+  end
+
+  create_table "equipamentos", force: :cascade do |t|
+    t.bigint "cliente_id"
+    t.string "marca"
+    t.string "modelo"
+    t.string "num_serie"
+    t.string "capacidade"
+    t.string "complemento"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_equipamentos_on_cliente_id"
   end
 
   create_table "estados", force: :cascade do |t|
@@ -118,6 +156,68 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["estado_id"], name: "index_municipios_on_estado_id"
+  end
+
+  create_table "ordem_servicos", force: :cascade do |t|
+    t.bigint "cliente_id"
+    t.bigint "status_id"
+    t.date "data_agendamento"
+    t.date "data_fechamento"
+    t.string "observacao"
+    t.string "prioridade"
+    t.decimal "valor_toal"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_ordem_servicos_on_cliente_id"
+    t.index ["status_id"], name: "index_ordem_servicos_on_status_id"
+  end
+
+  create_table "os_equipamentos", force: :cascade do |t|
+    t.bigint "equipamento_id"
+    t.bigint "ordem_servico_id"
+    t.string "laudo"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipamento_id"], name: "index_os_equipamentos_on_equipamento_id"
+    t.index ["ordem_servico_id"], name: "index_os_equipamentos_on_ordem_servico_id"
+  end
+
+  create_table "os_produtos", force: :cascade do |t|
+    t.bigint "produto_id"
+    t.decimal "quantidade"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["produto_id"], name: "index_os_produtos_on_produto_id"
+  end
+
+  create_table "os_servicos", force: :cascade do |t|
+    t.bigint "servico_id"
+    t.decimal "quantidade"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["servico_id"], name: "index_os_servicos_on_servico_id"
+  end
+
+  create_table "os_tecnicos", force: :cascade do |t|
+    t.bigint "tecnico_id"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tecnico_id"], name: "index_os_tecnicos_on_tecnico_id"
   end
 
   create_table "paises", force: :cascade do |t|
@@ -167,6 +267,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
     t.index ["produto_id"], name: "index_saida_estoques_on_produto_id"
   end
 
+  create_table "servicos", force: :cascade do |t|
+    t.string "descricao"
+    t.decimal "valor"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "status_empresas", force: :cascade do |t|
     t.string "descricao"
     t.string "created_by"
@@ -174,6 +284,37 @@ ActiveRecord::Schema[7.2].define(version: 2025_10_16_212552) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "status_os", force: :cascade do |t|
+    t.string "descricao"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tecnicos", force: :cascade do |t|
+    t.string "nome"
+    t.string "telefone"
+    t.string "funcao"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "telefones", force: :cascade do |t|
+    t.string "numero"
+    t.bigint "cliente_id"
+    t.string "created_by"
+    t.string "updated_by"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_telefones_on_cliente_id"
   end
 
   create_table "tipo_usuarios", force: :cascade do |t|

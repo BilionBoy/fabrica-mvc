@@ -61,6 +61,10 @@
                   <i class="ph-pen"></i>
                   <span>Editar</span>
                   <% end %>
+                  <%= link_to edit_cliente_path(cliente), class: "climastock-dropdown-item" do %>
+                  <i class="ph-pen"></i>
+                    <span>Equipamentos</span>
+                  <% end %>
                   <%= form_for cliente, method: :delete do |f| %>
                   <a class="climastock-dropdown-item climastock-dropdown-item-danger" 
                      data-confirm-delete="<%= cliente_path(cliente) %>" 

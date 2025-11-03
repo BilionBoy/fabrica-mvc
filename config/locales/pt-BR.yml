@@ -51,6 +51,9 @@ pt-BR:
       saida_estoque:
         one: "Saída de Estoque"
         other: "Saídas de Estoques"
+      cliente:
+        one: "Cliente"
+        other: "Clientes"
     attributes:
       estado:
         nome: "Nome"

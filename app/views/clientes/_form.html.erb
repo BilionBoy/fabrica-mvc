@@ -57,7 +57,36 @@
           </div>
               </div>
     </div>
-    
+<div data-controller="nested-form">
+    <h3>Endereços</h3>
+    <div data-nested-form-target="target">
+      <%= f.fields_for :enderecos do |ef| %>
+        <%= render "endereco_fields", f: ef %>
+      <% end %>
+    </div>
+    <template data-nested-form-target="template">
+      <%= f.fields_for :enderecos, @cliente.enderecos.build, child_index: "NEW_RECORD" do |ef| %>
+        <%= render "endereco_fields", f: ef %>
+      <% end %>
+    </template>
+    <%= link_to "Adicionar outro endereço", "#", data: { action: "click->nested-form#add" } %>
+  </div>
+
+  <div data-controller="nested-form">
+    <h3>Telefones</h3>
+    <div data-nested-form-target="target">
+      <%= f.fields_for :telefones do |tf| %>
+        <%= render "telefone_fields", f: tf %>
+      <% end %>
+    </div>
+    <template data-nested-form-target="template">
+      <%= f.fields_for :telefones, @cliente.telefones.build, child_index: "NEW_RECORD" do |tf| %>
+        <%= render "telefone_fields", f: tf %>
+      <% end %>
+    </template>
+    <%= link_to "Adicionar telefone", "#", data: { action: "click->nested-form#add" } %>
+  </div>
+
     <div class="climastock-form-footer">
       <div class="climastock-form-actions">
         <%= link_to clientes_path, class: "climastock-btn climastock-btn-outline" do %>

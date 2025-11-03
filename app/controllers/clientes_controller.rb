@@ -11,6 +11,8 @@ class ClientesController < ApplicationController
 
   def new
     @cliente = Cliente.new
+    @cliente.enderecos.build
+    @cliente.telefones.build
   end
 
   def edit
@@ -51,7 +53,9 @@ class ClientesController < ApplicationController
 
   def cliente_params
     permitted_attributes = Cliente.column_names.reject { |col| ['deleted_at', 'created_by', 'updated_by'].include?(col) }
-    params.require(:cliente).permit(permitted_attributes.map(&:to_sym))
+    params.require(:cliente).permit(permitted_attributes.map(&:to_sym),
+    enderecos_attributes: [:id, :logradouro, :numero, :bairro, :cidade, :uf, :cep, :_destroy],
+    telefones_attributes: [:id, :tipo, :numero, :_destroy])
   end
 
   def handle_not_found
